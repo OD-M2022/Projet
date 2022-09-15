@@ -1,0 +1,51 @@
+  <div style="color: red;">
+
+    <div class="bg">
+      <h3 class="account-title" >LOGIN</h3>
+      <div class="account-box" >
+        <div class="account-wrapper" >
+          <div class="account-logo" >
+            <a href="javascript:"><img src="assets/img/avatar.png" alt="Focus Technologies"></a>
+          </div>
+
+
+          <form [formGroup]="authenticationForm" (ngSubmit)="authenticate()">
+
+          <div class="form-group form-focus">
+            <label class="control-label" placeholder="Email">Email</label>
+            <input [class.is-invalid]="authenticationForm.get('email').invalid && authenticationForm.get('email').touched"
+              class="form-control floating" type="email" formControlName="email" required>
+          </div>
+
+
+          <div class="form-group form-focus">
+            <label class="control-label" placeholder="Password"></label>
+            <input [class.is-invalid]="authenticationForm.get('password').invalid && authenticationForm.get('password').touched"
+              class="form-control floating" type="password" formControlName="password" required>
+          </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-primary btn-block account-btn" [disabled]="!authenticationForm.valid">Login</button>
+          </div>
+
+<!--<form #f="ngForm" (ngSubmit)="login(f)">
+<div *ngIf="invalide" class="alert alert-danger">Login et/ou Mot de passe invalides</div>
+<label for="Matricule">Login</label>
+<input ngModel #Matricule="ngModel" required  type="text" class="form-control" id="login" name="Matricule">
+<div class="alert alert-danger" *ngIf="Matricule.invalid && Matricule.dirty">Veuillez saisir votre matricule
+</div>
+<label for="NumeroCIN">Mot de passe</label>
+<input ngModel #NumeroCIN="ngModel" required minlength="6" type="text" class="form-control" id="pwd" name="NumeroCIN">
+<div class="alert alert-danger" *ngIf="NumeroCIN.invalid && NumeroCIN.touched">Le mot de passe doit être composé d'au moins 6
+  caractères</div>
+
+
+<br>
+<button [disabled]="f.invalid" type="submit" class="btn btn-primary">Valider</button> <br>-->
+
+     <!--    </form>-->
+
+
+          </form>
+  </div>
+    </div>

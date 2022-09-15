@@ -1,0 +1,1359 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+<div class="row">
+<div class="col-sm-8">
+  <h4 class="page-title">Modifier mon Profile</h4>
+</div>
+</div>
+
+
+<form  (ngSubmit)="edit(form)" #form="ngForm" >
+
+  <div *ngIf="this.result === true" class="alert alert-success" role="alert">
+  This is a success alert—check it out!
+</div>
+
+<input type="hidden" id="UserId" name="UserId"
+          [(ngModel)]="employee.UserId" #UserId="ngModel">
+
+<input type="hidden" id="Role" name="Role" [(ngModel)]="employee.Role" #Role="ngModel">
+
+
+<div class="card-box">
+   <h4 class="page-title"></h4>
+   <h3 class="card-title">Informations Personnelles</h3>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="profile-img-wrap" >
+        <img class="inline-block" src="assets/img/me.jpg" alt="user" >
+        <div class="fileupload btn btn-default">
+          <span class="btn-text">Modifier</span>
+          <input class="upload" type="file">
+        </div>
+      </div>
+   </div>
+
+     <div class="profile-basic">
+      <div class="row">
+
+          <div class="col-md-4">
+          <label for="Matricule" ></label>
+          <input  type="text" class="form-control" placeholder="Matricule" id="Matricule" name="Matricule"
+          [(ngModel)]="employee.Matricule" #Matricule="ngModel" />
+          </div>
+          <div class="col-md-4">
+          <label for="NumeroCIN"></label>
+          <input type="text" class="form-control" placeholder="CIN" id="NumeroCIN" name="NumeroCIN"
+           [(ngModel)]="employee.NumeroCIN" #NumeroCIN="ngModel"  />
+          </div>
+          <div class="col-md-4">
+          <label for="Poste"></label>
+          <input type="text" class="form-control" placeholder="Poste" id="Poste" name="Poste"
+          [(ngModel)]="employee.Poste" #Poste="ngModel" />
+          </div>
+        </div>
+      </div>
+
+<div class="profile-basic">
+      <div class="row">
+
+        <div class="col-md-4">
+        <label for="Name"></label>
+        <input type="text" name="Name" id="name" class="form-control" placeholder="Name"
+        [(ngModel)]="employee.Name" #Name="ngModel" />
+       </div>
+
+       <div class="col-md-4">
+        <label for="Prenom"></label>
+        <input type="text" class="form-control" placeholder="Prenom" id="Prenom" name="Prenom"
+        [(ngModel)]="employee.Prenom" #Prenom="ngModel" />
+       </div>
+<br>
+        <div class="col-md-4">
+          <label for="DateEmbauche"></label>
+          <input type="text"
+           placeholder="Date d'embauche" 
+           class="form-control"
+           bsDatepicker
+           [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }"
+           type="text"
+          id="DateEmbauche" name="DateEmbauche" [(ngModel)]="employee.DateEmbauche" #DateEmbauche="ngModel">
+          </div>
+        </div>
+</div></div>
+</div>
+
+<div class="card-box">
+  <h3 class="card-title">Tenue de travail</h3>
+  <div class="row">
+
+  <div class="col-md-6">
+    <div class="form-group form-focus">
+      <label class="control-label" for="TaillePull" ></label>
+      <select class="select form-control floating" name="TaillePull"
+      [(ngModel)]="employee.TaillePull" #TaillePull="ngModel">
+      <option [selected]="true" disabled>Taille de pull</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+      </select>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<div class="card-box">
+   <h3 class="card-title">Situation familiale</h3>
+  <h3 class="card-title" placeholder ="Situation familiale"></h3>
+  <div class="row">
+    <div class="col-md-11">
+        <label class="control-label" for="SituationFamiliale"></label>
+        <select class="select form-control" name="SituationFamiliale"
+        [(ngModel)]="employee.SituationFamiliale" #SituationFamiliale="ngModel">
+          <option [selected]="true" >Situation familiale</option>
+          <option >Célibataire</option>
+          <option >Marié(e)</option>
+          <option >Divorcé(e)</option>
+          <option >Séparé(e)</option>
+          <option >Veuf(ve)</option>
+        </select>
+    </div>
+    <a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files"><img src="assets/img/attachment.png" alt=""></a>
+
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="NomConjoint"></label>
+        <input type="text" class="form-control " placeholder="Nom du conjoint" name="NomConjoint"
+        [(ngModel)]="employee.NomConjoint" #NomConjoint="ngModel"/>
+      </div>
+
+      <div class="col-md-6">
+        <label for="PrenomConjoint"></label>
+        <input type="text" class="form-control " placeholder="Prenom du conjoint" name="PrenomConjoint"
+        [(ngModel)]="employee.PrenomConjoint" #PrenomConjoint="ngModel" />
+      </div>
+    </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="DateNaissanceConjoint"></label>
+      <div class="form-group">
+        <input type="text"
+           placeholder="Date de naissance du conjoint"
+           class="form-control"
+           bsDatepicker
+           [bsConfig]="{ isAnimated: true }"
+           readonly type="text" name ="DateNaissanceConjoint"
+          [(ngModel)]="employee.DateNaissanceConjoint" #DateNaissanceConjoint="ngModel">
+      </div>
+    </div>
+
+     <div class="col-md-6">
+         <label for="NumeroTelephoneConjoint"></label>
+      <input type="tel" pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}" class="form-control" placeholder="Numéro de téléphone du conjoint" name="NumeroTelephoneConjoint"
+      [(ngModel)]="employee.NumeroTelephoneConjoint" #NumeroTelephoneConjoint="ngModel" />
+      </div></div>
+
+    <div class="row">
+       <div class="col-md-6" >
+         <label for="NombreEnfant"></label>
+         <input class="form-control" type="tel" placeholder="Nombre d'enfant(s) à charge"
+         pattern="[0-9]{1}" maxlength=2  id='nbrenfants' name="NombreEnfant"
+           [(ngModel)]="employee.NombreEnfant" #NombreEnfant="ngModel" />
+      </div>
+    </div>
+<br>
+<!--iv class ="row">
+<div class="col-md-12">
+  <label class ="from-group" ></label>
+   <table id='liste_enfant' class="table table-striped" style="width: max-content;">
+      <thead>
+         <tr >
+            <th style="text-align:center;">Nom</th>
+            <th style="text-align:center;">Prénom</th>
+            <th style="text-align:center;">Handicapé</th>
+            <th style="text-align:center;">Sexe</th>
+            <th style="text-align:center;">Date de Naissance</th>
+            <th style="text-align:center;">Niveau d'étude</th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody id ='tbody_enfant'>
+
+         <tr>
+            <td><input  id="nom_enfant" type="text"  class="form-control" value="" name="NomEnfant"
+              [(ngModel)]="employee.NomEnfant" #NomEnfant="ngModel"  required/></td>
+
+            <td><input name="prenom_enfant1" id="prenom_enfant" type="text"  class="form-control" value=""
+              [(ngModel)]="employee.PrenomEnfant" #PrenomEnfant="ngModel" required/></td>
+            <td>
+               <select name="enfant_handicape1" id="enfant_handicape" class="form-control" name="ListeEnfants"
+               for="HandicapeEnfant"  [(ngModel)]="employee.HandicapeEnfant" #HandicapeEnfant="ngModel" required >
+                  <option [selected]="true" disabled>Handicapé</option>
+                  <option value="Oui" >Oui</option>
+                  <option value="Non" >Non</option>
+
+               </select>
+            </td>
+            <td>
+               <select name="Sexe" class="form-control" id="enfant_sexe" value="Masculin"
+                for="Sexe"  [(ngModel)]="employee.Sexe" #Sexe="ngModel" required>
+                  <option [selected]="true" disabled>Sexe Enfant</option>
+                  <option value="Masculin" >Masculin</option>
+                  <option value="Feminin" >Féminin</option>
+
+               </select>
+            </td>
+            <td><input angular-mydatepicker [options]="myDatePickerOptions1"placeholder=""  readonly type="text" for="DateNaissanceEnfant"
+                [(ngModel)]="employee.DateNaissanceEnfant" #DateNaissanceEnfant="ngModel"></input></td>
+            <td>
+               <select name="niveau_etude_enfant1" id="niveau_etude_enfant"
+               class="form-control" value="0" required for="NiveauEtudeEnfant"
+               [(ngModel)]="employee.NiveauEtudeEnfant" #NiveauEtudeEnfant="ngModel">
+                  <option [selected]="true" disabled>Niveau d'étude</option>
+                  <option value="Non scolarisé" >Non scolarisé</option>
+                  <option value="Primaire">Primaire</option>
+                  <option value="Secondaire">Secondaire</option>
+                  <option value="Niveau bac">Niveau bac</option>
+                  <option value="BTS">BTS</option>
+                  <option value="BTP">BTP</option>
+                  <option value="Bac">Bac</option>
+                  <option value="Bac + 1">Bac +1</option>
+                  <option value="Bac + 2">Bac +2</option>
+                  <option value="Bac + 3">Bac +3</option>
+                  <option value="Bac + 4">Bac +4</option>
+                  <option value="Bac + 5">Bac +5</option>
+               </select>
+            </td>
+            <td id='td_file1'>
+              <a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files">
+                <img src="assets/img/attachment.png" alt=""></a>
+            </td>
+            <td class="table-action">
+               <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+
+   <input type="hidden" id='rowlenth_Enfant' name="rowlenth_Enfant">
+</div>
+</div>-->
+</div>
+
+  <div class="card-box">
+    <h1 class="card-title">Lien de Parenté</h1>
+      <div class="row">
+         <div class="col-md-4">
+              <div class="from-group">
+                 <label>Avez-vous un proche qui travaille à AZIZA  ?</label>
+              </div>
+           </div>
+           <div class="col-md-1">
+              <div class="radio">
+                <label for="Proches">
+                 <input type="radio" name="Proches" id="procheOui" value="oui" class="form-check-input"for="Proches"
+                 [(ngModel)]="employee.Proches" #Proches="ngModel" [checked]="true">
+                Oui</label>
+
+              </div>
+           </div>
+           <div class="col-md-4">
+            <div class="radio">
+               <label for="Proches"><input type="radio" name="Proches" id="procheNon"  class="form-check-input"
+                 [(ngModel)]="employee.Proches" #Proches="ngModel" value="non" required>
+               Non</label>
+            </div>
+         </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <div class="from-group">
+            <label>Nombre de proche(s)</label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="NombreProches"></label>
+          <input type="text" class="form-control " placeholder="Nombre de proche(s)" name="NombreProches"
+                 [(ngModel)]="employee.NombreProches" #NombreProches="ngModel" />
+        </div>
+      </div>
+<br>
+<!--<div class="row">
+ <div  class="col-md-12">
+    <div class="from-group" >
+      <label>Liste des liens de parentés</label></div>
+      <table id='table_proche' class="table table-striped">
+       <thead>
+          <tr for="ListeLiensParentes" ngModel>
+             <th style="text-align:center;">Nom</th>
+             <th style="text-align:center;">Prénom</th>
+             <th style="text-align:center;">Poste</th>
+             <th style="text-align:center;">Siége / Magasin</th>
+             <th></th>
+          </tr>
+       </thead>
+       <tbody id ='tbody_enfant'>
+        <tr>
+           <td><input name="nom_enfant1"  type="text"  class="form-control" value="" required/></td>
+           <td><input name="prenom_enfant1"  type="text"  class="form-control" value="" required/></td>
+           <td><input name="prenom_enfant1"  type="text"  class="form-control" value="" required/></td>
+           <td><input name="prenom_enfant1"  type="text"  class="form-control" value="" required/></td>
+
+        <td class="table-action">
+          <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
+        </td></tr>
+        </tbody>
+      </table>
+ </div>
+</div>
+  </div>
+
+  <div class="card-box">
+    <h3 class="card-title">Cordonnées</h3>
+    <div class="row">
+       <div class="col-md-8">
+        <label for="AdressN1"></label>
+      <input type="text" class="form-control" name="AdressN1" placeholder="Adresse N°1"
+      [(ngModel)]="employee.NombreProches" #NombreProches="ngModel" required>
+     </div>
+    </div>
+<br>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="VilleN1"></label>
+     <input type="text" class="form-control"name="VilleN1" placeholder="Ville N°1"
+     [(ngModel)]="employee.VilleN1" #VilleN1="ngModel" required>
+    </div>
+    <div class="col-md-4">
+      <label for="CodePostalN1"></label>
+      <input type="text" class="form-control" name="CodePostalN1" placeholder="Code postal N°1"
+       [(ngModel)]="employee.CodePostalN1" #CodePostalN1="ngModel" required>
+     </div>
+   </div>
+<br>
+    <div class="row">
+       <div class="col-md-8">
+        <label for="AdresseN2"></label>
+        <input type="text" class="form-control" name="AdresseN2" placeholder="Adresse N°2"
+        [(ngModel)]="employee.AdressN2" #AdresseN2="ngModel" required>
+      </div>
+    </div>
+<br>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="VilleN2"></label>
+       <input type="text" class="form-control" name="VilleN2" placeholder="Ville N°2"
+        [(ngModel)]="employee.VilleN2" #VilleN2="ngModel" required>
+     </div>
+    <div class="col-md-4">
+      <label for="CodePostalN2"></label>
+    <input type="text" class="form-control" name="CodePostalN2" placeholder="Code postal N°2"
+    [(ngModel)]="employee.CodePostalN2" #CodePostalN2="ngModel" required>
+    </div>
+</div>
+<br>
+    <div class="row">
+      <div class="col-md-4">
+        <label for="Email"></label>
+       <input type="text" class="form-control" name="Email" placeholder="Email"
+       [(ngModel)]="employee.Email" #Email="ngModel" required>
+      </div>
+      <div class="col-md-4">
+        <label for="NumeroTelephoneN1"></label>
+       <input type="text" class="form-control" name="NumeroTelephoneN1" placeholder="N° Tel 1"
+       [(ngModel)]="employee.NumeroTelephoneN1" #NumeroTelephoneN1="ngModel" required>
+      </div>
+      <div class="col-md-4">
+        <label for="NumeroTelephoneN2"></label>
+        <input type="text" class="form-control" name="NumeroTelephoneN2" placeholder="N° Tel 2"
+        [(ngModel)]="employee.NumeroTelephoneN2" #NumeroTelephoneN2="ngModel" required>
+       </div>
+    </div>
+<br>
+<div class="row">
+  <div  class="col-md-12">
+     <div class="from-group" >
+       <label>Personnes à contacter en cas d'urgence</label></div>
+       <table id='table_proche' class="table table-striped">
+        <thead>
+           <tr >
+              <th style="text-align:center;" for="NomContactUrg">Nom</th>
+              <th style="text-align:center;">Prénom</th>
+              <th style="text-align:center;">N° de Tel 1</th>
+              <th style="text-align:center;">N° de Tel 2</th>
+              <th style="text-align:center;">Email</th>
+              <th></th>
+           </tr>
+        </thead>
+        <tbody id ='tbody_enfant'>
+         <tr>
+            <td><input  type="text"  class="form-control" name="NomContactUrg" ngModel required/></td>
+            <td><input   type="text"  class="form-control" value="" required/></td>
+            <td><input   type="text"  class="form-control" value="" required/></td>
+            <td><input  type="text"  class="form-control" value="" required/></td>
+            <td><input  type="text"  class="form-control" value="" required/></td>
+            <td class="table-action">
+              <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
+           </td>
+
+</tbody>
+       </table>
+
+    <div mat-dialog-actions align="end">
+      <input type="button" class="add" value="Ajouter" ></div>
+    </div>
+ </div>-->
+<br>
+<div class ="row">
+  <div class="col-md-12">
+      <div class="form-group">
+       <label>Permis et Habilitation</label>
+      </div>
+      <div class="col-md-8">
+        <label class="control-label" for="Permis"></label>
+         <select class="select form-control floating" name="Permis"
+         [(ngModel)]="employee.Permis" #Permis="ngModel" >
+           <option [selected]="true" disabled>Permis</option>
+           <option [selected]="true">Permis A1</option>
+           <option>Permis A</option>
+           <option>Permis B</option>
+           <option>Permis B+E</option>
+           <option>Permis C</option>
+           <option>Permis C+E</option>
+           <option>Permis D</option>
+           <option>Permis D+E</option>
+           <option>Permis D1</option>
+         </select>
+       </div>
+
+        <div class="col-md-4">
+          <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
+        </div>
+  </div></div>
+    <div mat-dialog-actions align="end">
+      <input type="button" class="add" value="Ajouter">
+    </div>
+  </div>
+
+  <div class="card-box">
+    <h3 class="card-title">Santé</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="from-group">
+           <label>Est ce que vous avez eu votre passeport sanitaire ?</label>
+        </div>
+     </div>
+               <div class="col-md-1">
+                <div class="radio">
+                  <label for="PasseportSanitaire"><input type="radio" name="PasseportSanitaire" id="procheOui" value="Oui"
+                    class="form-check-input" [checked]="true"
+                    [(ngModel)]="employee.PasseportSanitaire" #PasseportSanitaire="ngModel">
+                  Oui</label>
+                </div>
+                </div>
+            <div class="col-md-1">
+             <div class="radio">
+                <label for="PasseportSanitaire"><input type="radio" name="PasseportSanitaire"
+                 id="procheNon"  class="form-check-input" value="Non"
+                 [(ngModel)]="employee.PasseportSanitaire" #PasseportSanitaire="ngModel" required>
+                Non</label>
+             </div>
+             </div>
+             <div class="col-md-2">
+             <a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files">
+              <img src="assets/img/attachment.png" alt=""></a>
+             </div>
+            </div>
+<br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="from-group">
+                   <label>Avez-vous un antécédent de maladie ? </label>
+                </div>
+             </div>
+                       <div class="col-md-1">
+                        <div class="radio">
+                          <label for="AntecedentMaladie"><input type="radio" name="AntecedentMaladie" id="procheOui" value="Oui"
+                            class="form-check-input"  [checked]="true"
+                    [(ngModel)]="employee.AntecedentMaladie" #AntecedentMaladie="ngModel" required>
+                          Oui</label>
+                        </div>
+                        </div>
+                    <div class="col-md-1">
+                     <div class="radio">
+                        <label for="AntecedentMaladie"><input type="radio" name="AntecedentMaladie" id="procheNon"  class="form-check-input"
+                          value="Non"  [(ngModel)]="employee.AntecedentMaladie" #AntecedentMaladie="ngModel" required>
+                        Non</label>
+                     </div>
+                     </div>
+                     <div class="col-md-2">
+                     <a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files">
+                      <img src="assets/img/attachment.png" alt=""></a>
+                     </div>
+                    </div>
+  <br>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="from-group">
+        <label>Type de maladie</label>
+      </div>
+    </div>
+        <div class="col-md-8">
+        <label for="TypeMaladie"></label>
+        <select class="select form-control floating" name="TypeMaladie" [(ngModel)]="employee.TypeMaladie" #TypeMaladie="ngModel" >
+        <option [selected]="true" disabled> Type de maladie </option>
+        <option >Maladie chronique</option>
+        <option >Maladie osseuse</option>
+        <option >Autres</option>
+       </select>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="card-box">
+    <h3 class="card-title">Autres Activités</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="from-group">
+           <label>Est-ce que vous êtes actifs dans la vie associative ou autre ?</label>
+        </div>
+     </div>
+     <div class="col-md-1">
+      <div class="radio">
+        <label for="Activites"><input type="radio" name="Activites" id="procheOui"
+           value="Oui" class="form-check-input" [checked]="true"
+           [(ngModel)]="employee.Activites" #Activites="ngModel" >
+        Oui</label>
+      </div>
+      </div>
+  <div class="col-md-1">
+   <div class="radio">
+      <label for="Activites"><input type="radio" name="Activites" id="procheNon"
+        class="form-check-input" value="Non"
+        [(ngModel)]="employee.Activites" #Activites="ngModel">
+      Non</label>
+   </div>
+   </div>
+  <div class="col-md-6">
+    <label for="ActivitesExemple">
+    <textarea   class="form-control" name="ActivitesExemple" id="associative"
+    placeholder="A préciser : Loisirs, Sport ..."
+    [(ngModel)]="employee.ActivitesExemple" #ActivitesExemple="ngModel" required>
+    </textarea></label></div>
+  </div>
+  </div>
+
+    <div class="card-box">
+      <h3 class="card-title">Niveau d'étude</h3>
+
+      <div class="row">
+        <div class="col-md-4">
+           <div class="form-group form-focus">
+            <label class="control-label" for="NiveauEtude" ></label>
+            <select class="select form-control floating" name="NiveauEtude"
+            [(ngModel)]="employee.NiveauEtude" #NiveauEtude="ngModel">
+              <option [selected]="true">Niveau d'études</option>
+              <option>Primaire</option>
+              <option>Secondaire</option>
+              <option>Niveau Bac</option>
+              <option>BTS</option>
+              <option>BTP</option>
+              <option>Bac+1</option>
+              <option>Bac+2</option>
+              <option>Bac+3</option>
+              <option>Bac+4</option>
+              <option>Bac+5</option>
+            </select>
+
+       </div>
+     </div>
+      </div>
+     <!-- <div class="row">
+
+        <div class="col-md-4">
+        <div class="form-group form-focus">
+          <label class="control-label" for="NiveauPrimaire" ></label>
+          <select class="select form-control floating" name="NiveauPrimaire" id="NiveauPrimaire"
+          [(ngModel)]="employee.NiveauPrimaire" #NiveauPrimaire="ngModel">
+            <option >Niveau Primaire</option>
+            <option [selected]="true" disabled>1ère année Primaire</option>
+            <option>2ème année Primaire</option>
+          </select>
+        </div>
+     </div>
+ <div class="col-md-4">
+      <div class="form-group"><label for="DateObtentionPrimaire">
+        <input angular-mydatepicker [options]="myDatePickerOptions1"
+        placeholder="Date d'obtention"  readonly type="text"  name="DateObtentionPrimaire"
+         [(ngModel)]="employee.DateObtentionPrimaire" #DateObtentionPrimaire="ngModel" ></input>
+     </label> </div></div>
+
+      <div class="col-md-4">
+        <div class="form-group form-focus">
+         <label class="control-label" for="Ecole"></label>
+         <select class="select form-control floating" name="Ecole"
+         [(ngModel)]="employee.Ecole" #Ecole="ngModel">
+           <option [selected]="true" disabled>Ecole</option>
+           <option>Ecole Bardo 2</option>
+           <option>Ecole Soukra</option>
+           <option>Ecole Chebbi </option>
+           <option>Autres</option>
+         </select>
+   </div>
+   </div>
+    </div>
+
+
+      <div class="row">
+    <div class="col-md-4">
+    <div class="form-group form-focus">
+      <label class="control-label" for="NiveauSecondaire"></label>
+      <select class="select form-control floating" name="NiveauSecondaire"
+      [(ngModel)]="employee.NiveauSecondaire" #NiveauSecondaire="ngModel">
+        <option [selected]="true" disabled>Niveau secondaire</option>
+        <option value="">1ère année secondaire</option>
+        <option value="">2ème année secondaire</option>
+        <option value="">3ème année secondaire</option>
+      </select>
+    </div>
+ </div>
+
+<div class="col-md-4">
+      <div class="form-group">
+        <label for="DateObtentionSecondaire"><input angular-mydatepicker [options]="myDatePickerOptions1" placeholder="Date d'obtention"  readonly type="text"
+          [(ngModel)]="employee.DateObtentionSecondaire" #DateObtentionSecondaire="ngModel" name="DateObtentionSecondaire"></input>
+      </label></div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group form-focus">
+       <label class="control-label" for="Lycee"></label>
+       <select class="select form-control floating" name="Lycee"
+       [(ngModel)]="employee.Lycee" #Lycee="ngModel" >
+         <option [selected]="true" disabled>Lycée</option>
+         <option value="">Lycé Al Wafa</option>
+         <option value="">Lycée Khayreddin</option>
+         <option value="">Lycée Carthage Tunis</option>
+         <option value="">Lycée Ibn Dhiaf</option>
+         <option value="">Lycée Bardo 2</option>
+         <option value="">Lycée Chebbi</option>
+         <option value="">Autres</option>
+       </select>
+ </div>
+ </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+      <div class="form-group form-focus">
+        <label class="control-label" for="NiveauBac"></label>
+        <select class="select form-control floating" name="NiveauBac"
+        [(ngModel)]="employee.NiveauBac" #NiveauBac="ngModel">
+          <option [selected]="true" disabled>Niveau bac</option>
+          <option value="">Economie & Gestion</option>
+          <option value="">Informatique</option>
+          <option value="">Lettres</option>
+          <option value="">Sciences Experimentales</option>
+          <option value="">Sportif</option>
+          <option value="">Technique</option>
+        </select>
+      </div>
+   </div>
+
+   <div class="col-md-4">
+    <div class="form-group form-focus">
+      <label class="control-label" for="DateObtentionBac"></label>
+      <select class="select form-control floating" name="DateObtentionBac"
+      [(ngModel)]="employee.DateObtentionBac" #DateObtentionBac="ngModel">
+        <option [selected]="true" disabled>Année du bac</option>
+        <option value="">2000</option>
+        <option value="">2001</option>
+        <option value="">2002</option>
+        <option value="">2003</option>
+        <option value="">2004</option>
+        <option value="">2005</option>
+        <option value="">2006</option>
+        <option value="">2007</option>
+        <option value="">2008</option>
+        <option value="">2009</option>
+        <option value="">2010</option>
+        <option value="">2011</option>
+        <option value="">2012</option>
+        <option value="">2013</option>
+        <option value="">2014</option>
+        <option value="">2015</option>
+        <option value="">2016</option>
+        <option value="">2017</option>
+        <option value="">2018</option>
+        <option value="">2019</option>
+        <option value="">2020</option>
+        <option value="">2021</option>
+
+      </select>
+    </div>
+ </div>
+
+
+      <div class="col-md-4">
+        <div class="form-group form-focus">
+         <label class="control-label" for="Lycee"></label>
+         <select class="select form-control floating" name="Lycee"
+         [(ngModel)]="employee.Lycee" #Lycee="ngModel">
+           <option [selected]="true" disabled>Lycée</option>
+           <option value="">Lycé Al Wafa</option>
+           <option value="">Lycée Khayreddin</option>
+           <option value="">Lycée Carthage Tunis</option>
+           <option value="">Lycée Ibn Dhiaf</option>
+           <option value="">Lycée Bardo 2</option>
+           <option value="">Lycée Chebbi</option>
+           <option value="">Autres</option>
+         </select>
+   </div>
+   </div>
+      </div>
+
+
+    <!--  <div class="row">
+        <div  class="col-md-12">
+           <div class="from-group" >
+             <label>Diplômes</label></div>
+             <table id='table_proche' class="table table-striped">
+              <thead>
+                 <tr>
+                    <th style="color:hsl(240, 9%, 30%);">Spécialité du diplôme</th>
+                    <th style="color:hsl(240, 9%, 30%);">Domaine du spécialité</th>
+                    <th style="color:hsl(240, 9%, 30%);">Niveau d'étude</th>
+                    <th style="color:hsl(240, 9%, 30%);">Institut</th>
+                    <th style="color:hsl(240, 9%, 30%);">Date d'obtention</th>
+                    <th></th>
+                 </tr>
+              </thead>
+              <tbody id ='tbody_enfant'>
+               <tr>
+                  <td><select name="init_diplom1" class="form-control" onchange="Row_diplome_autre(this)" value=""  required>
+                    <option value=""></option>
+                    <option value="A">Autres</option>
+                    <option value="S1">Agroalimentaire</option>
+                    <option value="S10">Conception mécanique et fabric</option>
+                    <option value="S11">Cultures et tourisme</option>
+                    <option value="S12">Design</option>
+                    <option value="S13">Développement humain</option>
+                    <option value="S14">Développement web</option>
+                    <option value="S15">Droit</option>
+                    <option value="S16">Economie</option>
+                    <option value="S17">Éducation</option>
+                    <option value="S18">Energie</option>
+                    <option value="S19">Finance</option>
+                    <option value="S2">Anglais des affaires</option>
+                    <option value="S20">finances, banque et assurance</option>
+                    <option value="S21">Génie industriel</option>
+                    <option value="S22">Géographiquement</option>
+                    <option value="S23">Gestion des affaires</option>
+                    <option value="S24">Gestion des archives</option>
+                    <option value="S25">Gestion électronique des info</option>
+                    <option value="S26">Gestion logistique et producti</option>
+                    <option value="S27">Informatique</option>
+                    <option value="S28">Ingénierie électrique</option>
+                    <option value="S29">Ingénierie et technologies du</option>
+                    <option value="S3">Bâtiment</option>
+                    <option value="S30">Langue</option>
+                    <option value="S31" >Logistique de distribution</option>
+                    <option value="S32">Maintenance</option>
+                    <option value="S33">Maintenance Industrielle</option>
+                    <option value="S34">Management</option>
+                    <option value="S35">Marketing</option>
+                    <option value="S36">Marketing digital</option>
+                    <option value="S37">Marketing numérique</option>
+                    <option value="S38">Mathématique</option>
+                    <option value="S39">Mecanique</option>
+                    <option value="S4">Biologie</option>
+                    <option value="S40">Medecine</option>
+                    <option value="S41">Médias</option>
+                    <option value="S42">Philosophie</option>
+                    <option value="S43">Planification et conduite des</option>
+                    <option value="S44">Production</option>
+                    <option value="S45">Psychologie</option>
+                    <option value="S46">Publicité audiovisuelle</option>
+                    <option value="S47">Qualité ;la santé et la sécuri</option>
+                    <option value="S48"> Réseaux et services médiatique</option>
+                    <option value="S49">Ressources humaines</option>
+                    <option value="S5">Commerce</option>
+                    <option value="S50">Santé</option>
+                    <option value="S51">Sciences de la vie et de la te</option>
+                    <option value="S52"> Sciences et technologies de l&#x27;</option>
+                    <option value="S53" >Sciences humaines</option>
+                    <option value="S54">Sciences musicales</option>
+                    <option value="S55">Sécurité des systèmes électrique</option>
+                    <option value="S56">Technologie</option>
+                    <option value="S57">Tourisme</option>
+                    <option value="S58">Transport et de la logistique</option>
+                    <option value="S6">Commerce international</option>
+                    <option value="S7">Commerce international et fina</option>
+                    <option value="S8">Communication</option>
+                    <option value="S9">Comptabilité</option>
+                 </select>
+                 <input name="autre_init_diplom1" id="autre_init_diplom1" type="text"  onkeyup= "Row_input_diplome_autre(this,this.value)" class="form-control" value=""  style="display: none;" disabled required>
+              </td>
+              <td>
+                 <select name="domaine_diplome1" id="domaine_diplome1" onchange="Row_domaine_autre(this)" class="form-control" required>
+                    <option value=""></option>
+                    <option value="1" >Gestion</option>
+                    <option value="A" >Autres</option>
+                 </select>
+</td>
+                  <td>
+
+                     <select class="select form-control floating">
+                       <option value=""></option>
+                       <option value="">Primaire</option>
+                       <option value="">Secondaire</option>
+                       <option value="">Niveau Bac</option>
+                       <option value="">BTS</option>
+                       <option value="">BTP</option>
+                       <option value="">Bac+1</option>
+                       <option value="">Bac+2</option>
+                       <option value="">Bac+3</option>
+                       <option value="">Bac+4</option>
+                       <option value="">Bac+5</option>
+                     </select>
+
+            </td>
+                  <td>
+                    <select class="select form-control" required>
+                    <option value=""></option>
+                    <option value="1">Carthage Sup&#x27;Com</option>
+                    <option value="10">CSFDOP DE SOUSSE </option>
+                    <option value="100">IPEIT </option>
+                    <option value="101">IPELSHT</option>
+                    <option value="102">IPSI</option>
+                    <option value="103">IRVT</option>
+                    <option value="104">ISA CHOT-MARIEM</option>
+                    <option value="105">ISAAS</option>
+                    <option value="106">ISAD</option>
+                    <option value="107">ISAEG</option>
+                    <option value="108">ISAJC</option>
+                    <option value="109">ISAM DE MAHDIA</option>
+                    <option value="11">CSFE DE DJERBA</option>
+                    <option value="110">ISAM DE SIDI BOUZID</option>
+                    <option value="111">ISAMG</option>
+                    <option value="112">ISAMG</option>
+                    <option value="113">ISAMK</option>
+                    <option value="114">ISAMKAS</option>
+                    <option value="115">ISAMM</option>
+                    <option value="116">ISAMS</option>
+                    <option value="117">ISAMSL</option>
+                    <option value="118">ISAMT</option>
+                    <option value="119">ISB SIDI THABET</option>
+                    <option value="12">CSFE DE KAIROUAN</option>
+                    <option value="120">ISBAM</option>
+                    <option value="121">ISBAS</option>
+                    <option value="122">ISBAT</option>
+                    <option value="123">ISBB</option>
+                    <option value="124">ISBM</option>
+                    <option value="125">ISBS</option>
+                    <option value="126">ISCAE</option>
+                    <option value="127">ISCCB</option>
+                    <option value="128">ISCENF</option>
+                    <option value="129">ISCI</option>
+                    <option value="13"> CSFE DE SAKIET EZZIT SFAX</option>
+                    <option value="130">ISDT</option>
+                    <option value="131">ISEAHGF</option>
+                    <option value="132">ISEAHK</option>
+                    <option value="133">ISEAHM</option>
+                    <option value="134">ISEAHME</option>
+                    </select></td>
+                  <td><input angular-mydatepicker [options]="myDatePickerOptions1"
+                      readonly type="text" [(ngModel)]="addE.start" name="start" #start="ngModel"></input></td>
+                  <td class="table-action">
+                    <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
+                 </td>
+
+               </tr></tbody>
+             </table>
+               <div mat-dialog-actions align="end">
+                <input type="button" class="add" value="Ajouter">
+              </div>
+
+
+        </div>
+       </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+
+        <div class="from-group" >
+          <label>Expériences Professionnelles</label>
+        </div>
+      </div>
+
+        <div class="col-md-6">
+          <div class="from-group">
+             <label >Avez-vous une experience professionnelle avant d'intégrer Aziza ? </label>
+          </div></div>
+
+                 <div class="col-md-1">
+                  <div class="radio">
+                    <label for="ExperiencePro"><input type="radio" name="proche"
+                      id="procheOui" value="Oui" class="form-check-input" [checked]="true"
+                      [(ngModel)]="employee.ExperiencePro" #ExperiencePro="ngModel">
+                    Oui</label>
+                  </div>
+                  </div>
+              <div class="col-md-1">
+               <div class="radio">
+                  <label for="ExperiencePro"><input type="radio" name="proche"
+                    id="procheNon"  class="form-check-input" value="Non"
+                      [(ngModel)]="employee.ExperiencePro" #ExperiencePro="ngModel" required>
+                  Non</label>
+               </div>
+               </div>
+
+              </div>
+
+  <div class ="row">
+   <table id='experience-pro' class="table table-striped" style="width: max-content;">
+      <thead>
+         <tr>
+            <th style="color: #676469; width: 280px;" for="TypeEmploiPro" >Type d'emlpoi</th>
+            <th style="color: #676469; width: 277px;">Poste</th>
+            <th style="color: #676469;">Date début</th>
+            <th style="color: #676469;">Date fin</th>
+            <th style="color: #676469;">Service</th>
+            <th style="color: #676469;">Entreprise</th>
+            <th style="color: #676469;">Lieu</th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody id='tbody_exp'>
+        <tr>
+           <td>
+              <select class="form-control" name="TypeEmploiPro" ngModel required>
+                 <option></option>
+                 <option>Employé</option>
+                 <option>Stagiaire</option>
+              </select>
+           </td>
+           <td><label for="PostePro">
+              <input name="PostePro" ngModel id="poste" type="text"  class="form-control" required/>
+          </label> </td>
+           <td> <label for="DateDebutPostePro"><input angular-mydatepicker [options]="myDatePickerOptions1"
+            readonly type="text" name="DateDebutPostePro" ngModel></input>
+        </label> </td>
+           <td> <input angular-mydatepicker [options]="myDatePickerOptions1"
+             readonly type="text" [(ngModel)]="addE.start" name="start" #start="ngModel"></input>
+          </td>
+           <td><input name="serv1" id="serv" type="text"  class="form-control" value="" required/></td>
+           <td><input name="entr1" id="serv" type="text"  class="form-control" value="" required/></td>
+           <td><input name="lieu1" id="lieu" type="text"  class="form-control" value="" required/></td>
+           <td class="table-action">
+            <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
+
+           </td>
+        </tr>
+
+     </tbody>
+  </table>
+</div>
+<div mat-dialog-actions align="end">
+  <input type="button" class="add" value="Ajouter">
+</div>>
+</div>-->
+
+ <!-- <div class="card-box">
+    <h3 class="card-title">Historique Aziza</h3>
+    <table id='Historique1' class="table table-striped" style="width: max-content;">
+      <thead>
+         <tr>
+            <th >Poste</th>
+            <th >Lieu de travail</th>
+            <th >Site</th>
+            <th >Direction</th>
+            <th >Département</th>
+            <th >Date Début</th>
+            <th >Date Fin</th>
+            <th ></th>
+         </tr>
+        </thead>
+        <tbody id='tbody_exp'>
+          <tr>
+             <td>
+                <select name="Hist" class="form-control"  value="" required>
+                  <option></option>
+              <option  >ACHETEUR FRUITS ET LEGUMES</option>
+              <option  >ADJOINT DIRECTEUR EXPLOITATION</option>
+              <option >ADJOINT RESPONSABLE MAGASIN</option>
+              <option >ADMINISTRATEUR ACHATS TECH</option>
+              <option >ADMINISTRATEUR DE PROSPECTION</option>
+              <option >ADMINISTRATEUR SYSTEMES &amp; BD</option>
+              <option >AGENT ADMINISTRATIF</option>
+              <option >AGENT ASSURANCE MAGASINS</option>
+              <option >AGENT BACK OFFICE</option>
+              <option  >AGENT DE FACTURATION</option>
+              <option >AGENT DE NETTOYAGE</option>
+              <option >AGENT DE PROSPECTION</option>
+              <option >AGENT DE SAISIE</option>
+              <option >AGENT DE SAISIE COMPTABLE</option>
+              <option >AGENT DE SAISIE SAISONNIER</option>
+              <option >AGENT DE SECURITE INTERNE</option>
+              <option >AGENT DE TRAVAUX ENERGETIQUES</option>
+              <option >AGENT DE TRI</option>
+              <option >AGENT DE VEILLE</option>
+              <option >AGENT DE VEILLE CAMERA</option>
+              <option >AGENT DE VEILLE STRATEGIQUE</option>
+              <option >AGENT TECHNIQUE</option>
+              <option >AGENT VEILLE CONCURRENTIELLE</option>
+              <option >AGENT VEILLE SPOT 3</option>
+              <option >AIDE FINANCIER</option>
+              <option >AIDE MAGASINIER</option>
+              <option >AIDE-COMPTABLE</option>
+              <option >ANALYSTE MARCHE</option>
+              <option >ANALYSTE.DEVL.BUSINESS INTELLI</option>
+              <option >APPROVISIONNEUR</option>
+              <option >ARCHITECTE D&#x27;INTERIEUR</option>
+              <option >ASSISTANT ADMINISTRATIF</option>
+              <option >ASSISTANT JURIDIQUE</option>
+              <option >ASSISTANT MARCHANDISING</option>
+              <option >ASSISTANT MARKETING</option>
+              <option >ASSISTANT MARKETING ET STRATEG</option>
+              <option >ASSISTANT RESSOURCES HUMAINES</option>
+              <option >ASSISTANT TRANSIT</option>
+              <option >ASSISTANTE BACK OFFICE EXPLOIT</option>
+              <option >ASSISTANTE DE DIRECTION</option>
+              <option >ASSISTANTE DE PROJET</option>
+              <option >ASSISTANTE DE SAISIE</option>
+              <option >ASSISTANTE DIRECTION ACHATS</option>
+              <option >ASSISTANTE DIRECTION EXPLOITAT</option>
+              <option >ASSISTANTE DIRECTION LPFT</option>
+              <option >Assistante Facturation, Recouv</option>
+              <option >ASSISTANTE NUMERO VERT</option>
+              <option >ASSISTANTE QUALITE</option>
+              <option >ASSISTANTE RH EXPLOITATION</option>
+              <option >ASSISTANTE VEILLE STRATEGIQUE</option>
+              <option >AUDITEUR INTERNE</option>
+              <option >BACK OFFICE MAINTENANCE</option>
+              <option >BOULANGER</option>
+              <option >CHARGE ADMI PUBLIQUE</option>
+              <option >CHARGE ANALYSES ET ESSAIS</option>
+              <option >CHARGE ASSURANCE QUALITE</option>
+              <option value="57" >CHARGE AUDIT</option>
+              <option value="58" >CHARGE AUDIT ET QUALITE</option>
+              <option value="59" >CHARGE AUDIT ET VEILLE STRATEG</option>
+              <option value="60" >CHARGE AUDIT ET VEILLE STRATEG</option>
+              <option value="61" >CHARGE AUDIT EXPLOITATION</option>
+              <option value="62" >CHARGE AUDIT INTERNE</option>
+              <option value="63" >CHARGE AUDIT MARKETING</option>
+              <option value="64" >CHARGE AUDIT VEILLE SAISONNIER</option>
+              <option value="65" >CHARGE CONTROLE QUALITE</option>
+              <option value="66" >CHARGE D&#x27;ASSISTANCE APPLICATIV</option>
+              <option value="67" >CHARGE DE MISSION</option>
+              <option value="68" >CHARGE DE MISSION EXPANSION</option>
+              <option value="69" >CHARGE DE SUPPORT TECHNIQUE</option>
+              <option value="70" >CHARGE DEVELOPPEMENT PL ALIMEN</option>
+              <option value="71" >CHARGE DEVELOPPEMENT PL ALIMEN</option>
+              <option value="72" >CHARGE DEVELOPPEMENT PL NON AL</option>
+              <option value="73" >CHARGE DEVELOPPEMENT RH</option>
+              <option value="74" >CHARGE EXPLOITATION IT</option>
+              <option value="75" >CHARGE FORMATION ET COM. INTER</option>
+              <option value="76" >CHARGE FORMATION ET COM. INTER</option>
+              <option value="77" >CHARGE HYGIENE ET ENVIRONNEMEN</option>
+              <option value="78" >CHARGE PAIE</option>
+              <option value="79" >CHARGE PROJET HYGIENE MAGASINS</option>
+              <option value="80" >CHARGE PROJET NETTOYAGE</option>
+              <option value="81" >CHARGE QUALITE</option>
+              <option value="82" >CHARGE QUALITE FOURNISSEUR</option>
+              <option value="83" >CHARGE QUALITE PRODUIT</option>
+              <option value="84" >CHARGE QUALITE PRODUIT ENTREPO</option>
+              <option value="85" >CHARGE QUALITE PRODUIT ENTREPO</option>
+              <option value="86" >CHARGE RECRUTEMENT</option>
+              <option value="87" >CHARGE REFERENCEMENT WEB</option>
+              <option value="88" >CHARGE SERVICE APRES VENTE</option>
+              <option value="89" >CHARGE SUPPORT</option>
+              <option value="90" >CHARGE SUPPORT APPLICATIF</option>
+              <option value="91" >CHARGE TRANSIT</option>
+              <option value="92" >CHARGEE DU BUREAU D&#x27;ORDRE</option>
+              <option value="93" >CHAUFFEUR</option>
+              <option value="94" >CHAUFFEUR-COURSIER</option>
+              <option value="95" >CHEF DE PRODUCTION</option>
+              <option value="96" >CHEF DE PRODUIT CATALOGUE</option>
+              <option value="97" >CHEF DE PROJET LOGISTIQUE</option>
+              <option value="98" >CHEF DE PROJET PAIN</option>
+              <option value="99" >CHEF DE PROJET VOLAILLE</option>
+              <option value="100" >CHEF DE PROJETS TECHNIQUES</option>
+              <option value="101" >CHEF DE QUAI</option>
+              <option value="102" >CHEF DE SERVICE QESH</option>
+              <option value="103" >COACH FORMATEUR</option>
+              <option value="104" >COMMERCIAL MAGASIN</option>
+              <option value="105" >COMMERCIAL MAGASIN SAISONNIER</option>
+              <option value="106" >COMMERCIAL SAISONNIER</option>
+              <option value="107" >COMMUNITY MANAGER</option><option value="108" >COMPTABLE</option><option value="109" >CONSULTANT MASTER DATA MANGEME</option><option value="110" >CONSULTANT MASTER DATA MANGEME</option><option value="111" >CONSULTANT SUPPORT APPLICATIF</option><option value="112" >CONSULTANT TECH-FONCTIONNEL</option><option value="113" >CONTROLEUR DE GESTION</option><option value="114" >CONTROLEUR DE GESTION COMM</option><option value="115" >CONTROLEUR INTERNE</option><option value="116" >CONTROLEUR QUALITE SPOT 3</option><option value="117" >COORDINATEUR LOGISTIQUE</option><option value="118" >DESIGNER GRAPHIQUE</option><option value="119" >DESIGNER PRODUIT</option><option value="120" >DESSINATEUR</option><option value="121" >DESSINATEUR-PROJETEUR</option><option value="122" >DEVELOPPEUR WEB</option><option value="123" >DIERCTEUR VOLAILLE</option><option value="124" >DIRECEUR GENERALE</option><option value="125" >DIRECTEUR ACHATS</option><option value="126" >DIRECTEUR ACTIF &amp; TECHNIQUE</option><option value="127" >DIRECTEUR ADMINISTRATIF &amp; FINA</option><option value="128" >DIRECTEUR APPROVISIONNEMENT</option><option value="129" >DIRECTEUR AUDIT CONCEPT ET VEI</option><option value="130" >DIRECTEUR AUDIT INTERNE</option><option value="131" >DIRECTEUR BOULANGERIE ET PATIS</option><option value="132" >DIRECTEUR CFO</option><option value="133" >DIRECTEUR CHARGE DE MISSION</option><option value="134" >DIRECTEUR CONTROLE DE GESTION</option><option value="135" >DIRECTEUR CONTROLE INTERNE ET </option><option value="136" >DIRECTEUR DES ACHATS</option><option value="137" >DIRECTEUR DES MARCHANDISES</option><option value="138" >DIRECTEUR DEVELOPPEMENT ET QUA</option><option value="139" >DIRECTEUR DEVELOPPEMENT ET QUA</option><option value="140" >DIRECTEUR DEVELPMNT ORGANISATI</option><option value="141" >DIRECTEUR DIGITALE</option><option value="142" >DIRECTEUR EXPANSION</option><option value="143" >DIRECTEUR EXPANSION ADJOINT</option><option value="144" >DIRECTEUR EXPLOITATION</option><option value="145" >DIRECTEUR FINANCE</option><option value="146" >DIRECTEUR FRUITS ET LEGUMES</option><option value="147" >DIRECTEUR GENERAL ADJOINT</option><option value="148" >DIRECTEUR HRBP EXPLOITATION</option><option value="149" >DIRECTEUR INNOVATION</option><option value="150" >DIRECTEUR JURIDIQUE</option><option value="151" >DIRECTEUR LOGISTIQUE</option><option value="152" >DIRECTEUR LOGISTIQUE ET PFT</option><option value="153" >DIRECTEUR MARKETING</option><option value="154" >DIRECTEUR MARKETING OPERATIONN</option><option value="155" >DIRECTEUR MARKETING STRATEGIQU</option><option value="156" >DIRECTEUR PRODUITS GRANDE CONS</option><option value="157" >DIRECTEUR PRODUITS GRANDE CONS</option><option value="158" >DIRECTEUR PROJETS EXPLOITATION</option><option value="159" >DIRECTEUR PROJETS MARCHANDISES</option><option value="160" >DIRECTEUR Q.E.S.H</option><option value="161" >DIRECTEUR REGIONAL EXPANSION</option><option value="162" >DIRECTEUR REGIONAL EXPLOITATIO</option><option value="163" >DIRECTEUR RESSOURCES HUMAINES</option><option value="164" >DIRECTEUR SPOT 3</option><option value="165" >DIRECTEUR STRATEGIE</option><option value="166" >DIRECTEUR SYSTEME D&#x27;INFORMATIO</option><option value="167" >DIRECTEUR VEILLE ET AUDIT METI</option><option value="168" >DIRECTEUR VEILLE STRATEGIQUE</option><option value="169" >DIRECTEURCOMPTABLE</option><option value="170" >DIRECTUER REPORTING</option><option value="171" >EMPLOYE COIN CHAUD</option><option value="172" >EXPERT TECHNICO-FONCTIONNEL</option><option value="173" >FEMME DE MENAGE</option><option value="174" >FINANCIER</option><option value="175" >GARDIEN</option><option value="176" >GESTIONNAIRE ADMIN ET PAIE</option><option value="177" >GESTIONNAIRE DE STOCK</option><option value="178" >GESTIONNAIRE DE TRESORERIE</option><option value="179" >GESTIONNAIRE PARC AUTO</option><option value="180" >GRAPHISTE</option><option value="181" >HOTESSE D&#x27;ACCUEIL-STANDARDISTE</option><option value="182" >INGENIEUR AGRONOME</option><option value="183" >INGENIEUR BUSINESS INTELLIGENC</option><option value="184" >INGENIEUR BUSINESS INTELLIGENC</option><option value="185" >INGENIEUR DE TRAVAUX</option><option value="186" >INGENIEUR DEVELOPPEMENT</option><option value="187" >INGENIEUR ENERGETIQUE</option>
+              <option value="188" >INGENIEUR ENERGITQUE</option>
+              <option value="189" >INGENIEUR INFORMATIQUE</option><option value="190" >INGENIEUR INNOVATION</option><option value="191" >INGENIEUR LOGISTIQUE</option><option value="192" >INGENIEUR METHODE QUALITE</option><option value="193" >INGENIEUR OPTIMISATION ENERGET</option><option value="194" >INGENIEUR QUALITE</option><option value="195" >INGENIEUR QUALITE SYSTEME</option><option value="196" >INGENIEUR RECHERCHE ET DEVELOP</option><option value="197" >INGENIEUR RECHERCHE ET DEVELOP</option><option value="198" >INGENIEUR SEC ET RES INFORMATI</option><option value="199" >INGENIEUR TECHNICO-FONCTIONNEL</option><option value="200" >IT PROJECT MANAGER</option><option value="201" >MAGASINIER</option><option value="202" >MANOEUVRE</option><option value="203" >MANOEUVRE PFT</option><option value="204" >MOTION DESIGNER ET PHOTOGRAPHE</option><option value="205" >OUVRIER SPECIALISE</option><option value="206" >PREPARATEUR COMMANDE</option><option value="207" >RELAIS RESSOURCES HUMAINES</option><option value="208" >RESPONSABLE  ACHATS GENERAUX</option><option value="209" >RESPONSABLE  SPOT 3</option><option value="210" >RESPONSABLE ACHATS PL</option><option value="211" >RESPONSABLE ACTIVITE BOULANGER</option><option value="212" >RESPONSABLE ACTIVITE POINT CHA</option><option value="213" >RESPONSABLE ADMIN ET PAIE</option><option value="214" >RESPONSABLE APPROVISIONNEMENT</option><option value="215" >RESPONSABLE ARTISTIQUE</option><option value="216" >RESPONSABLE AUDIT INTERNE</option><option value="217" >RESPONSABLE BACK OFFICE</option><option value="218" >RESPONSABLE BACK OFFICE EXPLOI</option><option value="219" >RESPONSABLE BUREAU DES ETUDES</option><option value="220" >RESPONSABLE BUREAU METHODE</option><option value="221" >RESPONSABLE BUREAU METHODERESP</option><option value="222" >RESPONSABLE CATALOGUE</option><option value="223" >RESPONSABLE CATALOGUE- MAGASIN</option><option value="224" >RESPONSABLE CATALOGUE- MAGASIN</option><option value="225" >RESPONSABLE CATEGORIES</option><option value="226" >RESPONSABLE CHANGEMENT ET PROJ</option><option value="227" >RESPONSABLE CHANGEMENT ET PROJ</option><option value="228" >RESPONSABLE COMM INTERNE ET HR</option><option value="229" >RESPONSABLE COMPTABILITE</option><option value="230" >RESPONSABLE CONTROLE DE GESTIO</option><option value="231" >RESPONSABLE CONTROLE DE GESTIO</option><option value="232" >RESPONSABLE CONTROLE QUALITE</option><option value="233" >RESPONSABLE CREATION MARKETING</option><option value="234" >RESPONSABLE DECAISSEMENT</option><option value="235" >RESPONSABLE DEMARQUE INCONNUE</option><option value="236" >RESPONSABLE DEPARTEMENT ADM RH</option><option value="237" >RESPONSABLE DES ACHATS</option><option value="238" >RESPONSABLE DES ETUDES EXPANSI</option><option value="239" >RESPONSABLE DES OPERATIONS ET</option><option value="240" >RESPONSABLE DES OPERATIONS ET </option><option value="241" >RESPONSABLE ENCAISSEMENT</option><option value="242" >RESPONSABLE ENERGETIQUE</option><option value="243" >RESPONSABLE FINANCE</option><option value="244" >RESPONSABLE FLOTTE ET ASSURANC</option><option value="245" >RESPONSABLE FLOTTE ET ASSURANC</option><option value="246" >RESPONSABLE FORMATION</option><option value="247" >RESPONSABLE FORMATION EXPLOITA</option><option value="248" >RESPONSABLE FRUITS ET LEGUMES</option><option value="249" >RESPONSABLE GESTION D&#x27;ACTIFS</option><option value="250" >RESPONSABLE GRANDS COMPTES</option><option value="251" >RESPONSABLE HIGHTECH</option><option value="252" >RESPONSABLE HSE</option><option value="253" >RESPONSABLE HYGIENE ET ENVIRON</option><option value="254" >RESPONSABLE INFRASTRUCTURE IT</option><option value="255" >RESPONSABLE INSPECTION</option><option value="256" >RESPONSABLE LOGISTIQUE</option><option value="257" >RESPONSABLE MAGASIN</option><option value="258" >RESPONSABLE MAINTENANCE ET INS</option><option value="259" >RESPONSABLE MAINTENANCE ET INS</option><option value="260" >RESPONSABLE MARKETING</option><option value="261" >RESPONSABLE MARKETING MAGASIN</option><option value="262" >RESPONSABLE MERCHANDISING</option><option value="263" >RESPONSABLE OPTIMISATION ENERG</option><option value="264" >RESPONSABLE OUVERTURE MAGASINS</option><option value="265" >RESPONSABLE PLANIFAICATION ACT</option><option value="266" >RESPONSABLE PLANIFAICATION ACT</option><option value="267" >RESPONSABLE PLANIFICATION ET C</option><option value="268" >RESPONSABLE PROJETS IT EXPANSI</option><option value="269" >RESPONSABLE PROJETS IT EXPANSI</option><option value="270" >RESPONSABLE PROSPECTION</option><option value="271" >RESPONSABLE QESH</option><option value="272" >RESPONSABLE QUALITE PRODUIT FL</option><option value="273" >RESPONSABLE QUALITE SYSTEMES</option><option value="274" >RESPONSABLE REALISATION NVX PR</option><option value="275" >RESPONSABLE REALISATION NVX PR</option><option value="276" >RESPONSABLE RECRUTEMENT</option><option value="277" >RESPONSABLE REGIONAL EXPANSION</option><option value="278" >RESPONSABLE RELAIS METIER EXPL</option><option value="279" >RESPONSABLE RH EXPLOITATION</option><option value="280" >RESPONSABLE S.A.V</option><option value="281" >RESPONSABLE SANTE ET SECURITE </option><option value="282" >RESPONSABLE SECURITE</option><option value="283" >RESPONSABLE SITE</option><option value="284" >RESPONSABLE SUPPORT APPLICATIF</option><option value="285" >RESPONSABLE SUPPORT FRONT OFFI</option><option value="286" >RESPONSABLE SUPPORT FRONT OFFI</option><option value="287" >RESPONSABLE TRANSIT</option><option value="288" >RESPONSABLE VISIBILITE</option><option value="289" >RESPONSABLE WEB MARKETING</option><option value="290" >RESPONSABLE ZONE</option><option value="291" >RESPONSABLE ZONE AUDIT QESH</option><option value="292" >RESPONSABLE ZONE AVS</option><option value="293" >RM PILOTE - FORMATEUR</option><option value="294" >SAISONNIER</option><option value="295" >STAGIAIRE</option><option value="296" >SUPERVISEUR BOULANGERIE</option><option value="297" >SUPERVISEUR DE PRODUCTION</option><option value="298" >SUPERVISEUR DE PROJETS</option><option value="299" >SUPERVISEUR EXPANSION</option><option value="300" >SUPERVISEUR GEOMARKETING</option><option value="301" >SUPERVISEUR PFT</option><option value="302" >SUPERVISEUR TERRAIN</option><option value="303" >TECHNICIEN AGROALIENTAIRE</option><option value="304" >TECHNICIEN CONTROLE QUALITE</option><option value="305" >TECHNICIEN DE MAINTENANCE</option><option value="306" >TECHNICIEN ELECTRICITE</option><option value="307" >TECHNICIEN ENERGETIQUE</option><option value="308" >TECHNICIEN ETUDE ET CONCEPTION</option><option value="309" >TECHNICIEN HELP DESK</option><option value="310" >TECHNICIEN INFORMATIQUE</option><option value="311" >TECHNICIEN INSTALLATION</option><option value="312" >TECHNICIEN LABORATOIRE</option><option value="313" >TECHNICIEN MAINTENANCE ET SUPP</option><option value="314" >TECHNICIEN MAINTENANCE ET SUPP</option><option value="315" >TECHNICIEN MAINTENANCE INFORMA</option><option value="316" >TECHNICIEN MAINTENANCE REGIONA</option><option value="317" >TECHNICIEN QUALITE PRODUIT</option><option value="318" >TECHNICIEN RECEPTION</option><option value="319" >TECHNICIEN SAV</option><option value="320" >TECHNICIEN SUPPORT ET HOTLINE</option><option value="321" >TECHNICO-FONCTIONNEL</option><option value="A" >Autre</option>
+            </select>
+           </td>
+           <td>
+            <select name="Poste" class="form-control"  value="" required>
+               <option></option>
+               <option>Siège</option>
+               <option>Magasin</option>
+               <option>Admin exploitation</option>
+               <option>Autres</option>
+             </select>
+           </td>
+           <td><select  name="his_site"class="form-control"  required><option value=""></option><option value="0903" >0903 - Retour</option><option value="1001" >1001 - RAOUED</option><option value="1002" >1002 - EZZOUHOUR 1</option><option value="1003" >1003 - MSAKEN</option><option value="1004" >1004 - JAMMEL 1</option><option value="1005" >1005 - SOUSSE SAHLOUL</option><option value="1006" >1006 - KALAA-KEBIRA</option><option value="1007" >1007 - SOUSSE RIADH</option><option value="1008" >1008 - BARRAKET ESSAHEL</option><option value="1009" >1009 - KALAA SEGHIRA1</option><option value="1010" >1010 - LE KRAM</option><option value="1011" >1011 - AIN ZAGHOUAN</option><option value="1012" >1012 - JAMMEL 2</option><option value="1013" >1013 - KAIROUAN SUD</option><option value="1014" >1014 - SIDI BOUALI</option><option value="1015" >1015 - MENZEL BOUZELFA 1</option><option value="1016" >1016 - KAIROUAN NORD</option><option value="1017" >1017 - MOKNINE</option><option value="1018" >1018 - BEMBLA</option><option value="1019" >1019 - ETTADHAMEN 1</option><option value="1020" >1020 - AKOUDA</option><option value="1021" >1021 - RAOUED ROUTE DE LA PLAGE</option><option value="1022" >1022 - HAMMAMET</option><option value="1023" >1023 - EL ALIA</option><option value="1024" >1024 - ETTADHAMEN 105</option><option value="1025" >1025 - SIDI ABDELHAMID</option><option value="1027" >1027 - MENZEL BOURGUIBA ENNAJAH</option><option value="1028" >1028 - SFAX ROUTE EL AIN</option><option value="1029" >1029 - KELIBIA 1</option><option value="1030" >1030 - CHEBBA</option><option value="1031" >1031 - HAMMAMET LA GARE</option><option value="1032" >1032 - IBN SINA</option><option value="1033" >1033 - TEBOULBA</option><option value="1034" >1034 - SOUSSE RIADH 2</option><option value="1035" >1035 - MHAMDIA 1</option><option value="1036" >1036 - DOUAR HICHER</option><option value="1037" >1037 - SFAX KASSAS N°5</option><option value="1038" >1038 - MONASTIR</option><option value="1039" >1039 - MENZEL TEMIME</option><option value="1040" >1040 - DAR FADHAL - SOUKRA</option><option value="1041" >1041 - NABEUL VILLE</option><option value="1042" >1042 - SFAX KAID MOHAMED</option><option value="1043" >1043 - EL WAHAT</option><option value="1044" >1044 - MAHDIA ROUTE DE TUNIS</option><option value="1045" >1045 - MAHDIA HIBOUN</option><option value="1046" >1046 - KHALED IBN EL WALID</option><option value="1047" >1047 - RIADH EL ANDALOUS</option><option value="1048" >1048 - MHAMDIA 2</option><option value="1049" >1049 - GHANNOUCH GABES</option><option value="1050" >1050 - MENZEL BOURGUIBA</option><option value="1051" >1051 - LA MARSA - ERRIADH</option><option value="1052" >1052 - EL GHAZALA</option><option value="1053" >1053 - SOLIMAN</option><option value="1054" >1054 - ENFIDHA</option><option value="1055" >1055 - BOUMHEL</option><option value="1056" >1056 - EZZAYATINE</option><option value="1057" >1057 - KORBA</option><option value="1058" >1058 - SAHLINE</option><option value="1059" >1059 - ELMAR</option><option value="1060" >1060 - BENI KHALLED</option><option value="1061" >1061 - BORJ LOUZIR</option><option value="1062" >1062 - EL MOUROUJ 5</option><option value="1063" >1063 - JARA GABES</option><option value="1064" >1064 - SOMRANE</option><option value="1065" >1065 - FOUCHANA 1</option><option value="1066" >1066 - KSOUR ESSEF</option><option value="1067" >1067 - GABES EL MENZEL</option><option value="1068" >1068 - KALAA KEBIRA 2</option><option value="1069" >1069 - MONASTIR 2</option><option value="1070" >1070 - BEJA</option><option value="1071" >1071 - HEDI NOUIRA</option><option value="1072" >1072 - KAIROUAN NORD 2</option><option value="1073" >1073 - SIDI SALAH</option><option value="1074" >1074 - SIDI HASSINE</option><option value="1075" >1075 - BIZERTE</option><option value="1076" >1076 - MENZEL TEMIME 2</option><option value="1077" >1077 - FOUCHANA 2</option><option value="1078" >1078 - MAGASIN DENDEN</option><option value="1079" >1079 - DENDEN 2</option><option value="1080" >1080 - TEBOURBA</option><option value="1081" >1081 - SIJOUMI</option><option value="1082" >1082 - BOUHSINA</option><option value="1083" >1083 - MAGASIN BOUARGOUB</option><option value="1084" >1084 - MORNAG</option><option value="1085" >1085 - EL AGBA</option><option value="1086" >1086 - SFAX ROUTE AIN 2</option><option value="1087" >1087 - NAASSEN</option><option value="1088" >1088 - MAGASIN ARIANA SOGHRA</option><option value="1089" >1089 -  HAMMAM-LIF</option><option value="1090" >1090 - BOUSALEM</option><option value="1091" >1091 - ZERMDINE</option><option value="1092" >1092 - BS SOLIMAN</option><option value="1093" >1093 - MEJEZ EL BAB</option><option value="1094" >1094 - ELHAMMA</option><option value="1095" >1095 - EL JAM</option><option value="1096" >1096 - GROMBALIA</option><option value="1097" >1097 - RADES 1</option><option value="1098" >1098 - BEJA 2</option><option value="1099" >1099 - SOUSSE JAWHARA</option><option value="1100" >1100 - MESSAADINE</option><option value="1101" >1101 - MNIHELA</option><option value="1102" >1102 - ZARZOUNA</option><option value="1103" >1103 - CITE KHALIL</option><option value="1104" >1104 - BOUMHEL 2</option><option value="1105" >1105 - SEJNENE CENTRE</option><option value="1106" >1106 - BIZERTE EL BHIRA</option><option value="1107" >1107 - MAKTHAR</option><option value="1108" >1108 - ZAOUIET SOUSSE</option><option value="1109" >1109 - MENZEL JEMIL</option><option value="1110" >1110 - BEN AROUS EL ESKEN</option><option value="1111" >1111 - IBN SINA 2</option><option value="1112" >1112 - MELLASSINE</option><option value="1113" >1113 - BEN AROUS EL MALAAB</option><option value="1114" >1114 - HAMMAM ZRIBA</option><option value="1115" >1115 - GABES EL AMAL</option><option value="1116" >1116 - JBENIANNA</option><option value="1117" >1117 - RAOUED JAAFER</option><option value="1118" >1118 - SALTNIA</option><option value="1119" >1119 - TEBOULBA 2</option><option value="1120" >1120 - KASSERINE NORD</option><option value="1121" >1121 - BHAR LAZREG</option><option value="1122" >1122 - ETTADHAMEN MARCHE</option><option value="1123" >1123 - MENZEL BOUZELFA 2</option><option value="1124" >1124 - GHARDIMAOU</option><option value="1125" >1125 - RAOUED SIDI AMOR</option><option value="1126" >1126 - RAS EL JBEL</option><option value="1127" >1127 - OUARDANINE</option><option value="1128" >1128 - SFAX ROUTE GABES</option><option value="1129" >1129 - KSAR HELAL 1</option><option value="1130" >1130 - HAMMAM SOUSSE</option><option value="1131" >1131 - SOUSSE LAOUINA</option><option value="1132" >1132 - CHAT MARIEM</option><option value="1133" >1133 - CHABAW</option><option value="1134" >1134 - ENNASR</option><option value="1135" >1135 - KSAR HELAL 2</option><option value="1136" >1136 - DAR CHAABANE</option><option value="1137" >1137 - EL FAHS</option><option value="1138" >1138 - KSAR HELAL 3</option><option value="1139" >1139 - ENNOZHA</option><option value="1140" >1140 - HAFFOUZ</option><option value="1141" >1141 - CITE ETTAHRIR</option><option value="1142" >1142 - DENDEN 3</option><option value="1143" >1143 - MEDENINE</option><option value="1144" >1144 - KALAAT LANDALOUS</option><option value="1145" >1145 - CITE EL KHADHRA</option><option value="1146" >1146 - NEFZA</option><option value="1147" >1147 - EL FAHS 2</option><option value="1148" >1148 - SBIKHA</option><option value="1149" >1149 - KELIBIA 2</option><option value="1150" >1150 - BIR EL BEY</option><option value="1151" >1151 - BENNANE</option><option value="1152" >1152 - KSIBET EL MEDIOUNI</option><option value="1153" >1153 - JDAYDA</option><option value="1154" >1154 - SAIDIA BARDO</option><option value="1155" >1155 - BARDO HEDI CHAKER</option><option value="1156" >1156 - MSAKEN 2</option><option value="1157" >1157 - OUARDIA BIG STORE</option><option value="1158" >1158 - CITE BEN YOUNES</option><option value="1159" >1159 - KEF MONGI SLIM</option><option value="1160" >1160 - MAGASIN SOUSSE ERRIADH 3</option><option value="1161" >1161 - SBEITLA</option><option value="1162" >1162 - MEDNINE 2</option><option value="1163" >1163 - BOUARADA</option><option value="1164" >1164 - EL YASMINET</option><option value="1165" >1165 - RADES 2</option><option value="1166" >1166 - EL MOUROUJ 4</option><option value="1167" >1167 - BEN YOUNES 2</option><option value="1168" >1168 - GAFSA ENNOUR 1</option><option value="1169" >1169 - HAMMAM SOUSSE 2</option><option value="1170" >1170 - GAFSA KSAR</option><option value="1171" >1171 - SFAX SIDI MANSOUR</option><option value="1172" >1172 - MOKNINE 2</option><option value="1173" >1173 - KASSERINE</option><option value="1174" >1174 - EL HENCHA</option><option value="1175" >1175 - TEBOURSEK</option><option value="1176" >1176 - SERS</option><option value="1177" >1177 - LE KRAM MARCHE</option><option value="1178" >1178 - GAFSA ENNOUR 2</option><option value="1179" >1179 - SOUSSE JAWHARA 2</option><option value="1180" >1180 - DAHMANI</option><option value="1181" >1181 - LE KEF BARNOUSSA</option><option value="1182" >1182 - SILIANA 1</option><option value="1183" >1183 - JENDOUBA</option><option value="1184" >1184 - KHAZNADAR</option><option value="1185" >1185 - MNIHELA 2</option><option value="1186" >1186 - MAGASIN DJERBA MIDOUN</option><option value="1187" >1187 - BS TOZEUR</option><option value="1188" >1188 - BS GREMDA</option><option value="1189" >1189 - BS EZZAHRA</option><option value="1190" >1190 - METLAOUI</option><option value="1191" >1191 - OMRANE SUPERIEUR</option><option value="1192" >1192 - BARDO KATKOUT</option><option value="1193" >1193 - EL HAOUARIA</option><option value="1194" >1194 - BOUSSALEM 02</option><option value="1195" >1195 - BIZERTE CORNICHE</option><option value="1196" >1196 - HAJEB LAYOUN</option><option value="1197" >1197 - DOUAR HICHER 3</option><option value="1198" >1198 - BIZERTE AIN MARIEM</option><option value="1199" >1199 - MAGASIN ARIANA MARCHE</option><option value="1200" >1200 - EL MOUROUJ ETTAKWA</option><option value="1201" >
+             1201 - KSAR SAID</option><option value="1202" >1202 - ARIANA JEDIDA</option><option value="1203" >1203 - KASSERINE 11</option><option value="1204" >1204 - REJICH</option><option value="1205" >1205 - SOUSSE KHZEMA</option><option value="1206" >1206 - SILIANA 2</option><option value="1208" >1208 - ZAGHOUAN</option><option value="1210" >1210 - SBIBA</option><option value="1211" >1211 - SFAX ROUTE MHARZA</option><option value="1212" >1212 - BELLEVUE</option><option value="1213" >1213 - SOUSSE CORNICHE</option><option value="1214" >1214 - BKALTA</option><option value="1215" >1215 - SOUSSE KHZEMA LES ORANGERS</option><option value="1216" >1216 - MAGASIN SIDI BOUZID VILLE/3</option><option value="1217" >1217 - BEB SAADOUN</option><option value="1218" >1218 - MATEUR</option><option value="1219" >1219 - RUE DE MADRID</option><option value="1220" >1220 - MAGASIN MENZEL TEMIME 3</option><option value="1221" >1221 - EZZOUHOUR 2</option><option value="1222" >1222 - BORJ LOUZIR 2</option><option value="1223" >1223 - GAFSA SNED 03</option><option value="1224" >1224 - FOUCHANA 3</option><option value="1225" >1225 - SFAX CITE EL BAHRI</option><option value="1226" >1226 - MAGASIN SIDI BOUZID 2</option><option value="1227" >1227 - SIDI HASSINE JAYARA</option><option value="1228" >1228 - BENI KHALLED 2</option><option value="1229" >1229 - MAHDIA 3</option><option value="1230" >1230 - MONASTIR 3</option><option value="1231" >1231 - OMRANE SUPERIEUR 2</option><option value="1232" >1232 - KAIROUAN ROUTE EL OUESLATIA</option><option value="1233" >1233 - ZAHROUNI ENNAKHIL</option><option value="1234" >1234 - BS SFAX ROUTE CHIHIA</option><option value="1235" >1235 - BOUMHEL BEL AIR</option><option value="1236" >1236 - CHEBBAW 2</option><option value="1237" >1237 - MAGASIN MONASTIR 4 SKANES</option><option value="1238" >1238 - MONASTIR SAYDA</option><option value="1239" >1239 - SOLIMAN 3 </option><option value="1240" >1240 - SFAX ROUTE MAHDIA</option><option value="1241" >1241 - KHENIS</option><option value="1242" >1242 - SIDI THABET </option><option value="1243" >1243 - MAGASIN MOKNINE 3</option><option value="1244" >1244 - SFAX ROUTE SALTNIA 2</option><option value="1245" >1245 - KSOUR ESSEF 2 </option><option value="1246" >1246 - MAGASIN TATAOUINE</option><option value="1247" >1247 - BORJ LOUZIR ERRAOUDHA</option><option value="1249" >1249 - KELIBIA 3</option><option value="1250" >1250 - MAHRES</option><option value="1251" >1251 - MAGASIN OUED ELLIL 3</option><option value="1252" >1252 - KEBELI</option><option value="1253" >1253 - MAGASIN MOKNASSI</option><option value="1254" >1254 - JBAL KHAOUI</option><option value="1255" >1255 - AMDOUN</option><option value="1256" >1256 - SBITLA 2</option><option value="1257" >1257 - KHEIREDDINE  </option><option value="1258" >1258 - GROMBALIA 2</option><option value="1259" >1259 - BIZERTE CITE ENNAKHLA</option><option value="1260" >1260 -  AIN ZAGHOUAN 2</option><option value="1261" >1261 - HAMMEM LIF MARCHE</option><option value="1262" >1262 -  MOUROUJ 2</option><option value="1263" >1263 - TAZARKA</option><option value="1264" >1264 - SAHLOUL 2</option><option value="1265" >1265 - BORJ LOUZIR 3</option><option value="1266" >1266 - MONASTIR 5</option><option value="1267" >1267 - SIDI BOUZID</option><option value="1268" >1268 -  TEBOURBA 2</option><option value="1269" >1269 -  MENZEL NOUR</option><option value="1270" >1270 - JAMMEL 03</option><option value="1271" >1271 - MENZEL  CHAKER 01</option><option value="1272" >1272 -  NABEUL 2</option><option value="1273" >1273 -  CITE OMAR EL MOKHTAR</option><option value="1274" >1274 -  BORJ CEDRIA</option><option value="1275" >1275 -  BIR LAHFAY</option><option value="1276" >1276 -  RAOUED ROUTE PLAGE 2</option><option value="1277" >1277 - JENDOUBA 2</option><option value="1278" >1278 - BOUHAJLA</option><option value="1279" >1279 - ZAREMDINE 2</option><option value="1280" >1280 -  CHEBBA 2</option><option value="1281" >1281 -  ZAHROUNI 2</option><option value="1282" >1282 -  MHAMDIA 3</option><option value="1283" >1283 -  TELA</option><option value="1284" >1284 - KALAA KEBIRA 3</option><option value="1285" >1285 -  HAMMAM SOUSSE 3</option><option value="1286" >1286 -  KALLALINE</option><option value="1287" >1287 - MENZEL BOUZELFA 3</option><option value="1288" >1288 - HAMMEM SOUSSE 4</option><option value="1289" >1289 - MORNAGUIA 2</option><option value="1290" >1290 - JELMA</option><option value="1292" >1292 - DOUZ</option><option value="1293" >1293 -  SOUSSE ETAAMIR</option><option value="1294" >1294 - RAOUED 2</option><option value="1296" >1296 - MAGASIN IBN SINA 3</option><option value="1297" >1297 - METOUIA</option><option value="1298" >1298 - MAGASIN BIR BOURAGBA</option><option value="1299" >1299 - JENDOUBA NORD 01</option><option value="1300" >1300 - MAGASIN LAAOUINA</option><option value="1302" >1302 - MAGASIN FERIANA</option><option value="1303" >1303 - GABES ELHAMMA 02</option><option value="1304" >1304 - SFAX RTE GREMDA 2</option><option value="1305" >1305 - BOUSALEM 03</option><option value="1306" >1306 - MAGASIN BEJA 3</option><option value="1307" >1307 - MAGASIN MOUROUJ 1</option><option value="1308" >1308 - MAGASIN SIDI FATHALLAH</option><option value="1309" >1309 - MAGASIN MENZEL CHAKER</option><option value="1310" >1310 - MOKNINE 4</option><option value="1311" >1311 - MAGASIN METLINE</option><option value="1312" >1312 - AOUSJA</option><option value="1313" >1313 - MAGASIN JENDOUBA 04</option><option value="1314" >1314 - MAGASIN SOUSSE OUED BLIBEN</option><option value="1316" >1316 - GAFSA EL GUTAR</option><option value="1317" >1317 - MAGASIN NAFTA</option><option value="1318" >1318 - MAGASIN HRAIRIA</option><option value="1319" >1319 - MAGASIN SFAX RTE LAFRANE</option><option value="1320" >1320 - MAGASIN HAMMEM CHAT</option><option value="1321" >1321 -  AGAREB</option><option value="1322" >1322 - BOUFICHA</option><option value="1323" >1323 - SIDI ALI BEN AOUN</option><option value="1324" >1324 - SIDI HASSINE 02</option><option value="1325" >1325 - SOUSSE EZZOUHOUR</option><option value="1327" >1327 - MORNAGUIA</option><option value="1328" >1328 - JENDOUBA 05</option><option value="1329" >1329 - FOUCHANA 04</option><option value="1330" >1330 - MAGASIN MEGRINE JAWHRA</option><option value="1331" >1331 - BHAR LAZREG 02</option><option value="1332" >1332 - INTILAKA</option><option value="1333" >1333 - EL OUARDIA 13 AOUT</option><option value="1334" >1334 - ZAHROUNI 10</option><option value="1335" >1335 - RADES 03</option><option value="1336" >1336 - MAJEL BELABES</option><option value="1337" >1337 - SOUSSE ERRIADH 21</option><option value="1338" >1338 - MAGASIN DOUAR HICHER 4</option><option value="1339" >1339 - JAYARA2</option><option value="1340" >1340 - MAGASIN TEBOURBA 3</option><option value="1341" >1341 - ESSOUASSI 07</option><option value="1343" >1343 - NASRALLAH</option><option value="1344" >1344 - MAHDIA 04</option><option value="1346" >1346 - SIDI BOUZID 4</option><option value="1347" >1347 - SFAX RTE ELAFRANE 2</option><option value="1348" >1348 - SFAX RTE GABES 2</option><option value="1349" >1349 - INTILAKA 2</option><option value="1350" >1350 - MEDENINE 03</option><option value="1351" >1351 - GABES AMAL 02</option><option value="1352" >1352 - OUM LARAIES</option><option value="1353" >1353 - MNIHLA CITE REPUBLIQUE</option><option value="1355" >1355 - BARDO 20 MARS</option><option value="1356" >1356 - ERRAFAHA</option><option value="1357" >1357 - TAJEROUIN</option><option value="1358" >1358 - SIDI REZIG</option><option value="1359" >1359 - HAMMEM SOUSSE 05</option><option value="1361" >1361 -  EL ALA</option><option value="1362" >1362 - SFAX RTE CEDRA</option><option value="1363" >1363 - OUESLATIA</option><option value="1364" >1364 - MDHILA</option><option value="1365" >1365 - TATAOUINE 02</option><option value="1366" >1366 - MHAMDIA 04</option><option value="1367" >1367 - HAMMAMET JEBLI</option><option value="1368" >1368 - OUED ELLIL 4</option><option value="1369" >1369 - SIDI BOUZID 24</option><option value="1371" >1371 - OUEDHRIF</option><option value="1372" >1372 - ZARZIS</option><option value="1374" >1374 - JAMMEL 4</option><option value="1375" >1375 - MENZEL BOUZAIEN</option><option value="1377" >1377 - SFAX SOUKRA</option><option value="1379" >1379 - MAKTHER 02</option><option value="1381" >1381 - METLAOUI 2</option><option value="1382" >1382 - SFAX BOUZAIEN</option><option value="1383" >1383 - HAMMEM CHAT 02</option><option value="1384" >1384 - ZAOUIET KONTECH</option><option value="1385" >1385 - GABES TEBOLBOU</option><option value="1386" >1386 - MENZEL CHAKER 03</option><option value="1387" >1387 - GABES SUD</option><option value="1388" >1388 - AWLED HAFFOUZ</option><option value="1390" >1390 - BEJA 04</option><option value="1391" >1391 - DAR FADHAL 2</option><option value="1392" >1392 - RAS TABIA</option><option value="1393" >1393 - SIDI ABDELHAMID 02</option><option value="1408" >1408 - AGBA 02</option><option value="1434" >1434 -  JENDOUBA CITE CHORFA</option><option value="1476" >1476 - JAMMEL 06</option><option value="1481" >1481 - MOUROUJ 1 N°2</option><option value="1488" >1488 - MAGASIN KEF CITE EL ONS</option><option value="1505" >1505 - GAFSA ZARROUG</option><option value="9003" >9003 - Spot 3</option><option value="PEP" >PEP - PEPINIERE</option><option value="R01" >R01 - RAFIKA DE COMMERCE DE DETAIL</option><option value="R051" >R051 - ADMIN EXPLOITATION</option><option value="S001" >S001 - SIEGE</option><option value="T01" >T01 - AZIZA DE COMMERCE DE DETAIL</option><option value="T0202" >T0202 - AZIZA DE COMMERCE DE gros</option>
+            </select></td>
+         <td><select name="hist_direction" required class="form-control" ><option value=""></option><option value="A" >Autre</option><option value="ACG" >CONTROLE DE GESTION</option><option value="ACH" >MARCHANDISES</option><option value="AUD" >AUDIT INTERNE</option><option value="CFO" >CFO</option><option value="DAT" >ACTIFS ET TECHNIQUE</option><option value="DGE" >GENERALE</option><option value="DGT" >DIGITALE</option><option value="DLO" >LOGISTIQUE ET PFT</option><option value="DLP" >LOGISTIQUE ET PRODUCTION</option><option value="DRH" >RESSOURCES HUMAINES</option><option value="DSI" >SYSTEME D&#x27;INFORMATION</option><option value="DST" >STRATEGIE</option><option value="ENT" >Entrepôt</option><option value="EXL" >EXPLOITATION</option><option value="EXP" >EXPANSION</option><option value="MKG" >MARKETING ET STRATEGIE</option><option value="PFT" >PRODUITS FRAIS TRADITIONNELS</option><option value="PRE" >PREPARATION</option><option value="QSH" >QUALITE ENVIR SECURITE HYGIENE</option><option value="REP" >REPORTING ET CONSOLIDATION</option>
+        </select></td>
+        <td><select  name="hist_depart" class="form-control" value="" ><option value=""></option><option value="APP" >APPROVISIONNEMENT</option><option value="CPT" >COMPTABILITE</option><option value="CRE" >CREA</option><option value="DQP" >DEVELOPPEMENT QUALITE PRODUIT</option><option value="FINA" >FINANCE</option><option value="GACT" >GESTION DES ACTIFS</option><option value="GNER" >ACHTAS GENERAUX</option><option value="JUR" >JURIDIQUE</option><option value="MARK" >MARKETING</option><option value="PAP" >PLANIFICATION ACTIVITES PROMO</option><option value="PGC" >PRODUIT GRANDE CONSOMMATION</option><option value="PL" >PL</option><option value="SCR" >SECURITE</option><option value="SPT3" >SPOT 3</option><option value="TRS" >TRANSIT</option><option value="VEIL" >VEILLE ET AUDIT METIER</option></select></td>
+
+       <td> <input angular-mydatepicker [options]="myDatePickerOptions1"
+        readonly type="text" [(ngModel)]="addE.start" name="start" #start="ngModel"></input>
+      </td>
+
+       <td> <input angular-mydatepicker [options]="myDatePickerOptions1"
+         readonly type="text" [(ngModel)]="addE.start" name="start" #start="ngModel"></input>
+      </td>
+      <td class="table-action">
+        <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
+
+       </td>
+    </tr>
+
+ </tbody>
+</table>
+
+<div mat-dialog-actions align="end">
+  <input type="button" class="add" value="Ajouter">
+</div>
+<br>
+<div class="row">
+  <div  class="col-md-12">
+     <div class="from-group" >
+
+
+       <label>Historique des Formations effectuées</label></div>
+       <table id='table_proche' class="table table-striped">
+        <thead>
+           <tr >
+              <th style="color:hsl(240, 9%, 30%);">Année formation</th>
+              <th style="color:hsl(240, 9%, 30%);" >Nombre de jours</th>
+              <th style="color:hsl(240, 9%, 30%);" >Spécialité de formation</th>
+              <th style="color:hsl(240, 9%, 30%);" >Organisme de formation</th>
+              <th></th>
+           </tr>
+        </thead>
+        <tbody>
+
+              <tr *ngFor="let field of fieldArray; let i = index">
+                <td>
+                  <input [(ngModel)]="field.AnneeFormation" class="form-control" type="text" name="{{field.AnneeFormation}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.NombreJours" class="form-control" type="text" name="{{field.NombreJours}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.SpecialiteFormation" class="form-control" type="text" name="{{field.SpecialiteFormation}}" />
+                </td>
+                <td>
+                  <input [(ngModel)]="field.OrganismeFormation" class="form-control" type="text" name="{{field.OrganismeFormation}}" />
+                </td>
+                <td>
+                  <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <input class="form-control" type="text" id="newAttributeAnneeFormation" [(ngModel)]="newAttribute.AnneeFormation"
+                    name="newAttributeAnneeFormation" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="newAttributeNombreJours" [(ngModel)]="newAttribute.NombreJours"
+                    name="newAttributeNombreJours" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="newAttributeSpecialiteFormation" [(ngModel)]="newAttribute.SpecialiteFormation"
+                    name="newAttributeSpecialiteFormation" />
+                </td>
+                <td>
+                  <input class="form-control" type="text" id="newAttributeOrganismeFormation" [(ngModel)]="newAttribute.OrganismeFormation"
+                    name="newAttributeOrganismeFormation" />
+                </td>
+                <td>
+                  <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
+                </td>
+              </tr>
+
+
+         </tbody>
+       </table>
+
+  </div>
+ </div>
+</div>-->
+
+
+    </div>
+<div mat-dialog-actions align="end">
+ <button type="submit" class="btn btn-danger"style="margin: 15px;"  id="valider" name="valider"  >
+    <i class="fa fa-send"></i> Sauvgarder </button></div>
+  </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Attacher un fichier-->
+      <div id="drag_files" class="modal custom-modal fade center-modal" role="dialog">
+        <div class="modal-dialog">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Drag and drop files upload</h3>
+            </div>
+            <div class="modal-body p-t-0">
+              <form id="js-upload-form">
+                <div class="upload-drop-zone" id="drop-zone">
+                  <i class="fa fa-cloud-upload fa-2x"></i> <span class="upload-text">Just drag and drop files here</span>
+                </div>
+                <h4>Uploading</h4>
+                <ul class="upload-list">
+                  <li class="file-list">
+                    <div class="upload-wrap">
+                      <div class="file-name">
+                        <i class="fa fa-photo"></i> photo.png
+                      </div>
+                      <div class="file-size">1.07 gb</div>
+                      <button type="button" class="file-close">
+                        <i class="fa fa-close"></i>
+                      </button>
+                    </div>
+                    <div class="progress progress-xs progress-striped">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                    </div>
+                    <div class="upload-process">37% done</div>
+                  </li>
+                  <li class="file-list">
+                    <div class="upload-wrap">
+                      <div class="file-name">
+                        <i class="fa fa-file"></i> task.doc
+                      </div>
+                      <div class="file-size">5.8 kb</div>
+                      <button type="button" class="file-close">
+                        <i class="fa fa-close"></i>
+                      </button>
+                    </div>
+                    <div class="progress progress-xs progress-striped">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                    </div>
+                    <div class="upload-process">37% done</div>
+                  </li>
+                  <li class="file-list">
+                    <div class="upload-wrap">
+                      <div class="file-name">
+                        <i class="fa fa-photo"></i> dashboard.png
+                      </div>
+                      <div class="file-size">2.1 mb</div>
+                      <button type="button" class="file-close">
+                        <i class="fa fa-close"></i>
+                      </button>
+                    </div>
+                    <div class="progress progress-xs progress-striped">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 65%"></div>
+                    </div>
+                    <div class="upload-process">Completed</div>
+                  </li>
+                </ul>
+              </form>
+              <div class="m-t-30 text-center">
+                <button class="btn btn-primary btn-lg">Add to upload</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--<div class="col-md-2">
+      <div class="form-group form-focus">
+        <label class="control-label">Prénom</label>
+        <input type="text" class="form-control floating" />
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group form-focus">
+        <label class="control-label">Genre</label>
+        <input type="text" class="form-control floating" />
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group form-focus">
+        <label class="control-label">Date de naissance</label>
+        <input type="text" class="form-control floating datetimepicker" />
+      </div>
+    </div>
+
+    <div class="col-md-2">
+    <div class="form-group form-focus">
+      <label class="control-label">Handicapé</label>
+      <input type="text" class="form-control floating datetimepicker" />
+    </div>
+  </div>
+
+  <div class="col-md-2">
+      <div class="form-group form-focus">
+        <label class="control-label">Niveau d'étude</label>
+        <input type="text" class="form-control floating datetimepicker" />
+      </div>
+      <input type="file"
+      id="avatar1" name="avatar1"
+      accept="image/*,.pdf" size="2">
+    </div>
+
+
+</div>
+  <div class="add-more">
+    <a href="javascript:" class="btn btn-primary"><i class="fa fa-plus"></i> Add More Experience</a>
+  </div>
+</div>
+<div class="text-center m-t-20">
+  <button class="btn btn-primary btn-lg" type="button">Save &amp; update</button>
+</div>
+</form>
+</div>-->
