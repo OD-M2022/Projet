@@ -317,7 +317,7 @@
  </div>
 </div>
   </div>
-
+-->
   <div class="card-box">
     <h3 class="card-title">Cordonnées</h3>
     <div class="row">
@@ -378,8 +378,8 @@
         <input type="text" class="form-control" name="NumeroTelephoneN2" placeholder="N° Tel 2"
         [(ngModel)]="employee.NumeroTelephoneN2" #NumeroTelephoneN2="ngModel" required>
        </div>
-    </div>
-<br>
+    </div></div>
+<br><!--
 <div class="row">
   <div  class="col-md-12">
      <div class="from-group" >
@@ -412,13 +412,14 @@
     <div mat-dialog-actions align="end">
       <input type="button" class="add" value="Ajouter" ></div>
     </div>
- </div>-->
-<br>
+ </div>
+<br>-->
 <div class ="row">
   <div class="col-md-12">
       <div class="form-group">
        <label>Permis et Habilitation</label>
       </div>
+
       <div class="col-md-8">
         <label class="control-label" for="Permis"></label>
          <select class="select form-control floating" name="Permis"
@@ -436,14 +437,10 @@
          </select>
        </div>
 
-        <div class="col-md-4">
-          <button type="button" class="supp"><i class="fa fa-trash-o align-middle"></i> </button>
-        </div>
-  </div></div>
-    <div mat-dialog-actions align="end">
-      <input type="button" class="add" value="Ajouter">
-    </div>
-  </div>
+  </div></div></div>
+
+   
+  
 
   <div class="card-box">
     <h3 class="card-title">Santé</h3>
@@ -480,7 +477,7 @@
                 <div class="from-group">
                    <label>Avez-vous un antécédent de maladie ? </label>
                 </div>
-             </div>
+             
                        <div class="col-md-1">
                         <div class="radio">
                           <label for="AntecedentMaladie"><input type="radio" name="AntecedentMaladie" id="procheOui" value="Oui"
@@ -500,7 +497,7 @@
                      <a class="link attach-icon" href="#" data-toggle="modal" data-target="#drag_files">
                       <img src="assets/img/attachment.png" alt=""></a>
                      </div>
-                    </div>
+                    </div></div>
   <br>
   <div class="row">
     <div class="col-md-2">
@@ -518,8 +515,8 @@
        </select>
     </div>
 
-    </div>
-  </div>
+    </div></div>
+ 
 
   <div class="card-box">
     <h3 class="card-title">Autres Activités</h3>
@@ -537,6 +534,7 @@
         Oui</label>
       </div>
       </div>
+
   <div class="col-md-1">
    <div class="radio">
       <label for="Activites"><input type="radio" name="Activites" id="procheNon"
