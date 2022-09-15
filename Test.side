@@ -17,7 +17,7 @@
       "id": "2af31de9-247b-4522-aef0-b8965e92edd0",
       "comment": "",
       "command": "type",
-      "target": "xpath=//input[@type='email']",
+      "target": "xpath=//input[@type='test']",
       "targets": [
         ["css=.form-group:nth-child(1) > .form-control", "css:finder"],
         ["xpath=//input[@type='email']", "xpath:attributes"],
