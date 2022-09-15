@@ -10,6 +10,7 @@ Whenever dependencies in `package.json` are changed, run the following command:
 
 ```sh
 npm install
+
 ```
 
 To only install resolved dependencies in `package-lock.json`:

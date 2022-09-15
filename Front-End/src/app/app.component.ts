@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Event, NavigationEnd } from '@angular/router'
-import { AuthService } from '../Services/auth.service';
+import { AuthService } from 'src/Services/auth.service';
 
 declare const $: any;
 
@@ -11,26 +11,10 @@ declare const $: any;
 })
 export class AppComponent implements OnInit {
 
-  public url;
-  public url2;
-  loginPage:Boolean = false;
-  registerPage:Boolean = false;
-  forgotPage:Boolean = false;
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {
-    router.events.subscribe((event: Event) => {
-
-      if (event instanceof NavigationEnd) {
-        this.url = event.url.split('/')[1];
-        this.url2 = event.url.split('/')[2];
-        //console.log(this.url);
-
-      }
-    });
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit() {
-
     if ($('.main-wrapper').length > 0) {
       var $wrapper = $(".main-wrapper");
       $(document).on('click', '#mobile_btn', function (e) {
@@ -101,6 +85,5 @@ export class AppComponent implements OnInit {
         $(".page-wrapper").css("min-height", height);
       }
     });
-
   }
 }

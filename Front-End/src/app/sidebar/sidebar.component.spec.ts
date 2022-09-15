@@ -1,6 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 
 import { SidebarComponent } from './sidebar.component';
+import { NgSlimScrollModule, SLIMSCROLL_DEFAULTS } from 'ngx-slimscroll';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -8,7 +11,12 @@ describe('SidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarComponent ]
+      declarations: [ SidebarComponent ],
+      imports: [
+        HttpClientModule,
+        NgSlimScrollModule,
+        RouterModule.forRoot([])
+      ],
     })
     .compileComponents();
   }));

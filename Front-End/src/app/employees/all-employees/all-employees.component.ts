@@ -48,7 +48,9 @@ export class AllEmployeesComponent implements OnInit {
   table =[];
 
   ngOnInit() {
-    $('.floating').on('focus blur', function (e) {$(this).parents('.form-focus').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));}).trigger('blur');
+    if (typeof $ !== 'undefined') {
+      $('.floating').on('focus blur', function (e) {$(this).parents('.form-focus').toggleClass('focused', (e.type === 'focus' || this.value.length > 0));}).trigger('blur');
+    }
 
     this.getEmployees();
   }
@@ -81,7 +83,10 @@ export class AllEmployeesComponent implements OnInit {
       cPassword:'',
       joinDate:{formatted : ""}
     }
-    $('#add_employee').modal('show');
+
+    if (typeof $ !== 'undefined') {
+      $('#add_employee').modal('show');
+    }
   }
 
   addSubmit(f)

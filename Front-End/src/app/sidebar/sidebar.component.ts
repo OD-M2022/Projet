@@ -160,14 +160,16 @@ export class SidebarComponent implements OnInit {
       //height:'100%'
     }
 
-    var h=$(window).height()-60;
-    $('.slimscroll-wrapper').height(h);
-
-    $(window).resize(function(){
-    var h=$(window).height()-60;
-    $('.slimscroll-wrapper').height(h);
-    });
-
+    if (typeof $ !== 'undefined') {
+      var h=$(window).height()-60;
+      $('.slimscroll-wrapper').height(h);
+  
+      $(window).resize(function(){
+      var h=$(window).height()-60;
+      $('.slimscroll-wrapper').height(h);
+      });
+  
+    }
 
     if (localStorage.getItem('Employee')) {
       const storage = JSON.parse(localStorage.getItem('Employee'))
