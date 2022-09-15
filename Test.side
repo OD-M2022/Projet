@@ -17,7 +17,7 @@
       "id": "2af31de9-247b-4522-aef0-b8965e92edd0",
       "comment": "",
       "command": "type",
-      "target": "xpath=//input[@type='test']",
+      "target": "xpath=//input[@type='email']",
       "targets": [
         ["css=.form-group:nth-child(1) > .form-control", "css:finder"],
         ["xpath=//input[@type='email']", "xpath:attributes"],
@@ -43,25 +43,10 @@
       ],
       "value": ""
     }, {
-      "id": "e4a0c943-8bad-4bb4-bf97-6ff1a22f5806",
-      "comment": "",
-      "command": "type",
-      "target": "linkText=My profile",
-      "targets": [
-        ["linkText=My profile", "linkText"],
-        ["css=li:nth-child(1) > .null", "css:finder"],
-        ["xpath=//a[contains(text(),'My profile')]", "xpath:link"],
-        ["xpath=//div[@id='sidebar-menu']/ul/li/a", "xpath:idRelative"],
-        ["xpath=(//a[contains(@href, '/profile/edit')])[3]", "xpath:href"],
-        ["xpath=//app-sidebar/div/div/div/div/ul/li/a", "xpath:position"],
-        ["xpath=//a[contains(.,'My profile')]", "xpath:innerText"]
-      ],
-      "value": "My profile"
-    }, {
       "id": "a6be7eaf-0707-4327-bbd8-49c2a513f3fc",
       "comment": "",
       "command": "click",
-      "target": "linkText=My profile",
+      "target": "xpath=//a[contains(text(),'My profile')]",
       "targets": [
         ["linkText=My profile", "linkText"],
         ["css=li:nth-child(1) > .null", "css:finder"],

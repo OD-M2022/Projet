@@ -18,8 +18,8 @@ describe('Default Suite', function() {
     await driver.findElement(By.xpath("//input[@type=\'email\']")).sendKeys("admin@admin.com")
     await driver.findElement(By.xpath("//input[@type=\'password\']")).sendKeys("123456")
     await driver.findElement(By.xpath("//button[contains(.,\'Login\')]")).click()
-    await driver.findElement(By.linkText("My profile")).sendKeys("My profile")
-    await driver.findElement(By.linkText("My profile")).click()
+    await driver.findElement(By.linkText("My profile")).sendKeys("My Profile")
+    await driver.findElement(By.xpath("//a[contains(text(),\'My profile\')]")).click()
     await driver.findElement(By.name("TaillePull")).click()
     {
       const dropdown = await driver.findElement(By.name("TaillePull"))
