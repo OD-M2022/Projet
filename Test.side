@@ -1,0 +1,120 @@
+{
+  "id": "c68e7280-c513-4ac9-82a7-77b5656f97b4",
+  "version": "2.0",
+  "name": "Test",
+  "url": "http://localhost:4200/login",
+  "tests": [{
+    "id": "bb1f399e-0cc8-47e0-984e-ff30483f8411",
+    "name": "Test",
+    "commands": [{
+      "id": "cc0e9258-15c1-4803-a026-eb8f4742614d",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:4200/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2af31de9-247b-4522-aef0-b8965e92edd0",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='email']",
+      "targets": [
+        ["css=.form-group:nth-child(1) > .form-control", "css:finder"],
+        ["xpath=//input[@type='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "7d2be4fe-ed22-4958-bd2c-77f08dc20ad1",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@type='password']",
+      "targets": [],
+      "value": "123456"
+    }, {
+      "id": "a7ab5254-ee3d-4439-9970-aff7c414239a",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Login')]",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4a0c943-8bad-4bb4-bf97-6ff1a22f5806",
+      "comment": "",
+      "command": "type",
+      "target": "linkText=My profile",
+      "targets": [
+        ["linkText=My profile", "linkText"],
+        ["css=li:nth-child(1) > .null", "css:finder"],
+        ["xpath=//a[contains(text(),'My profile')]", "xpath:link"],
+        ["xpath=//div[@id='sidebar-menu']/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/profile/edit')])[3]", "xpath:href"],
+        ["xpath=//app-sidebar/div/div/div/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My profile')]", "xpath:innerText"]
+      ],
+      "value": "My profile"
+    }, {
+      "id": "a6be7eaf-0707-4327-bbd8-49c2a513f3fc",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=My profile",
+      "targets": [
+        ["linkText=My profile", "linkText"],
+        ["css=li:nth-child(1) > .null", "css:finder"],
+        ["xpath=//a[contains(text(),'My profile')]", "xpath:link"],
+        ["xpath=//div[@id='sidebar-menu']/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/profile/edit')])[3]", "xpath:href"],
+        ["xpath=//app-sidebar/div/div/div/div/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'My profile')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a53b2ff-122f-4d18-aa2b-0dee8358fabb",
+      "comment": "",
+      "command": "click",
+      "target": "name=TaillePull",
+      "targets": [
+        ["name=TaillePull", "name"],
+        ["css=.col-md-6 .select", "css:finder"],
+        ["xpath=//select[@name='TaillePull']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b20f12d3-3027-433a-93de-1b5d053e1ec6",
+      "comment": "",
+      "command": "select",
+      "target": "name=TaillePull",
+      "targets": [],
+      "value": "label=L"
+    }, {
+      "id": "5c2d80a3-8845-4597-a346-11b012f39e42",
+      "comment": "",
+      "command": "click",
+      "target": "id=valider",
+      "targets": [
+        ["id=valider", "id"],
+        ["name=valider", "name"],
+        ["css=#valider", "css:finder"],
+        ["xpath=//button[@id='valider']", "xpath:attributes"],
+        ["xpath=//div[8]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Sauvgarder')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "65d8568e-294d-4fb0-aa24-13099e05a33e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["bb1f399e-0cc8-47e0-984e-ff30483f8411"]
+  }],
+  "urls": ["http://localhost:4200/login"],
+  "plugins": []
+}

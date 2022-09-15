@@ -1,4 +1,0 @@
-capabilities:
-  browserName: 'chrome'
-  chromeOptions:
-    binary: 'C:\Program Files\Google\Chrome\Application\chrome.exe'
