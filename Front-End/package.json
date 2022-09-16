@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --browsers=ChromeHeadless --watch=false",
-    "selenium": "selenium-side-runner --debug --config-file=\"../config.yaml\" --output-directory=\"D:/Application Oumayma/RH-Aziza/Projet/test-result\" ../Test.side",
+    "selenium": "selenium-side-runner --debug  --output-format=junit --config-file=\"../config.yaml\" --output-directory=\"D:/Application Oumayma/RH-Aziza/Projet/test-result\" ../Test.side",
     "selenium:ci": "selenium-side-runner -c \"goog:chromeOptions.args=[--headless,--nogpu] browserName=chrome\" ../Test.side",
     "e2e": "ng e2e"
   },
