@@ -1,4 +1,4 @@
 capabilities:
-  browserName: 'chrome'
+  browserName: "chrome"
   chromeOptions:
-    binary: './chromedriver'
+    binary: "./chromedriver.exe"
