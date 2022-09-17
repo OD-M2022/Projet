@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 import { AuthService } from '../../../Services/auth.service';
 import { Role } from '../../models/role';
+import { User } from '../../models/user';
+import { first } from 'rxjs';
+import { EmployeesService } from 'src/Services/employees.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,35 +17,78 @@ import { Role } from '../../models/role';
 
 export class LoginPageComponent {
   authenticationForm: FormGroup;
+  loading = false;
+  submitted = false;
+  error: boolean = false;
 
   constructor(
     public fb: FormBuilder,
     public router: Router,
     private authService: AuthService,
+    private employeeService: EmployeesService,
     private location: Location
   ) {
     this.authenticationForm = this.fb.group({
-      email: ['', Validators.email ],
-      password: ['', Validators.required ],
+      email: ['', Validators.email],
+      password: ['', Validators.required],
     });
   }
 
-  authenticate() {
-    // stop here if form is invalid
-     if (this.authenticationForm.invalid) {
-         return;
-     }
+  onSubmit() {
+    this.submitted = true;
 
-    this.authService.authenticate(this.authenticationForm.value);
-    this.authService.user.subscribe(user => {
-      if (user) {
-        if (user.role === Role.User) {
-          this.router.navigate([`profile/edit`]);
-        } else if (user.role === Role.Admin) {
-          this.router.navigate([`employees/all-employees`]);
+    // stop here if form is invalid
+    if (this.authenticationForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+
+    const { email, password } = this.authenticationForm.value
+
+    this.authService.login(email, password).pipe(first()).subscribe({
+      next: (user: User) => this.identify(user),
+      error: error => {
+        this.error = true;
+        this.loading = false;
+      }
+    });
+  }
+
+  private identify (user: User) {
+    this.authService.whoAmI(user).pipe(first()).subscribe({
+      next: (userId: number) => this.setUser({...user, id: userId}),
+      error: error => {
+        this.error = true;
+        this.loading = false;
+      }
+    });
+  }
+
+  private setUser (user: User) {
+    return this.employeeService.getEmployeeRole(user).subscribe({
+      next: (role: Role) => {
+        if (role) {
+          this.authService.setUser({ ...user, role: role })
+          this.redirect()
+        } else {
+          throw Error('User does not exist or has no Role')
         }
+      },
+      error: error => {
+        this.error = true;
+        this.loading = false;
+      }
+    });
+  }
+
+  private redirect () {
+    this.authService.user.subscribe(user => {
+      if (user.role === Role.User) {
+        this.router.navigate([`profile/edit`]);
+      } else if (user.role === Role.Admin) {
+        this.router.navigate([`employees/all-employees`]);
       }
     })
   }
-
 }

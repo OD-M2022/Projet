@@ -4964,3 +4964,38 @@ table.table-inbox tbody tr.checked {
 		top: 113px;
 	}
 }
+
+
+/* 
+	SURCHARGE
+*/
+
+.ng-submitted .form-group.has-error .ng-invalid {
+	border-color: #a94442 !important;
+}
+
+.spin-loader {
+	display: inline-block;
+    width: 22px;
+    height: 22px;
+  }
+  .spin-loader:after {
+	content: " ";
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: spin-loader 1.2s linear infinite;
+  }
+  @keyframes spin-loader {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  
