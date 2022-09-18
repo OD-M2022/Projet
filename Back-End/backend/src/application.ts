@@ -16,6 +16,8 @@ import {
   JWTAuthenticationComponent, TokenServiceBindings, UserServiceBindings
 } from '@loopback/authentication-jwt';
 import {MongoDsDataSource} from './datasources/mongo-ds.datasource';
+import { CustomUserService } from './services/user.service';
+import { UserRepository, UserCredentialsRepository } from './repositories';
 // ------------------------------------
 
 
@@ -58,7 +60,14 @@ export class BackendApplication extends BootMixin(
      // Bind datasource
      this.dataSource(MongoDsDataSource, UserServiceBindings.DATASOURCE_NAME);
      // ------------- END OF SNIPPET -------------
+     this.bind(UserServiceBindings.USER_SERVICE).toClass(CustomUserService),
 
+     // Bind user and credentials repository
+    this.bind(UserServiceBindings.USER_REPOSITORY).toClass(UserRepository)
+    
+    this.bind(UserServiceBindings.USER_CREDENTIALS_REPOSITORY).toClass(
+      UserCredentialsRepository,
+    )
      // this.bind(TokenServiceBindings.TOKEN_EXPIRES_IN).to("1");
 
   }
