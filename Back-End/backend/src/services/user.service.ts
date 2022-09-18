@@ -57,6 +57,7 @@ export class CustomUserService implements UserService<User, UserCredentials> {
       name: user.username,
       id: user.id,
       email: user.email,
+      role: user.role
     };
   }
 }

@@ -89,7 +89,7 @@ export class UserController {
   })
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
-  ): Promise<{token: string}> {
+  ): Promise<{token: string, role: string}> {
     // ensure the user exists, and the password is correct
     const user = await this.userService.verifyCredentials(credentials);
     // convert a User object into a UserProfile object (reduced set of properties)
@@ -97,24 +97,10 @@ export class UserController {
 
     // create a JSON Web Token based on the user profile
     const token = await this.jwtService.generateToken(userProfile);
-    return {token};
+    const { role } = userProfile
+    return {token, role};
   }
 
-  @authenticate('jwt')
-  @get('/whoAmI', {
-    responses: {
-      '200': {
-        description: 'Return current user',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'string',
-            },
-          },
-        },
-      },
-    },
-  })
   async whoAmI(
     @inject(SecurityBindings.USER)
     currentUserProfile: UserProfile,
@@ -122,6 +108,7 @@ export class UserController {
     return currentUserProfile[securityId];
   }
 
+  @authenticate('jwt')
   @post('/signup', {
     responses: {
       '200': {

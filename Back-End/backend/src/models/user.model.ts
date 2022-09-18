@@ -5,6 +5,7 @@
 
 import {Entity, hasOne, model, property} from '@loopback/repository';
 import {UserCredentials} from './user-credentials.model';
+import {Profile} from './profile.model';
 
 @model({
   settings: {
@@ -33,8 +34,6 @@ export class User extends Entity {
   })
   username?: string;
 
-  // must keep it
-  // feat email unique
   @property({
     type: 'string',
     required: true,
@@ -60,6 +59,12 @@ export class User extends Entity {
   })
   verificationToken?: string;
 
+    // must keep it
+  // feat email unique
+  @hasOne(() => Profile)
+  profile: Profile;
+
+  
   @hasOne(() => UserCredentials)
   userCredentials: UserCredentials;
 

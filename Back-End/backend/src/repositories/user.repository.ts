@@ -11,8 +11,9 @@ import {
   repository,
 } from '@loopback/repository';
 import { MongoDsDataSource } from '../datasources/mongo-ds.datasource';
-import {User, UserCredentials, UserRelations} from '../models';
+import {User, UserCredentials, UserRelations, Profile} from '../models';
 import {UserCredentialsRepository} from './user-credentials.repository';
+import {ProfileRepository} from './profile.repository';
 
 export class UserRepository extends DefaultCrudRepository<
   User,
@@ -24,12 +25,16 @@ export class UserRepository extends DefaultCrudRepository<
     typeof User.prototype.id
   >;
 
+  public readonly profile: HasOneRepositoryFactory<Profile, typeof User.prototype.id>;
+
   constructor(
     @inject('datasources.mongoDS') dataSource: MongoDsDataSource,
     @repository.getter('UserCredentialsRepository')
-    protected userCredentialsRepositoryGetter: Getter<UserCredentialsRepository>,
+    protected userCredentialsRepositoryGetter: Getter<UserCredentialsRepository>, @repository.getter('ProfileRepository') protected profileRepositoryGetter: Getter<ProfileRepository>,
   ) {
     super(User, dataSource);
+    this.profile = this.createHasOneRepositoryFactoryFor('profile', profileRepositoryGetter);
+    this.registerInclusionResolver('profile', this.profile.inclusionResolver);
     this.userCredentials = this.createHasOneRepositoryFactoryFor(
       'userCredentials',
       userCredentialsRepositoryGetter,
