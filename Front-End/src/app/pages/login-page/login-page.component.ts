@@ -66,20 +66,8 @@ export class LoginPageComponent {
   }
 
   private setUser (user: User) {
-    return this.employeeService.getEmployeeRole(user).subscribe({
-      next: (role: Role) => {
-        if (role) {
-          this.authService.setUser({ ...user, role: role })
-          this.redirect()
-        } else {
-          throw Error('User does not exist or has no Role')
-        }
-      },
-      error: error => {
-        this.error = true;
-        this.loading = false;
-      }
-    });
+    this.authService.setUser(user)
+    this.redirect()
   }
 
   private redirect () {

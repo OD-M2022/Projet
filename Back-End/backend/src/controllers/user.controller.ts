@@ -101,6 +101,21 @@ export class UserController {
     return {token, role};
   }
 
+  @authenticate('jwt')
+  @get('/whoAmI', {
+    responses: {
+      '200': {
+        description: 'Return current user',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'string',
+            },
+          },
+        },
+      },
+    },
+  })
   async whoAmI(
     @inject(SecurityBindings.USER)
     currentUserProfile: UserProfile,
