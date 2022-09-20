@@ -1,6 +1,11 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
+@model({
+  settings: {
+    strict: true
+  }
+})
+
 export class Profile extends Entity {
 
   @property({
@@ -219,6 +224,36 @@ export class Profile extends Entity {
     required: false,
   })
   experiencePro: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  passeportSanitaire: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  antecedentMaladie: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  typeMaladie: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  activites: string;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  activitesExemple: string;
 
   @property({
     type: 'string',

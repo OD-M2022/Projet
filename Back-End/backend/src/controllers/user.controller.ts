@@ -13,12 +13,14 @@ import {
   UserServiceBindings
 } from '@loopback/authentication-jwt';
 import {inject} from '@loopback/core';
-import {model, property, repository} from '@loopback/repository';
+import {Filter, model, property, repository} from '@loopback/repository';
 import {
   get,
   getModelSchemaRef,
+  param,
   post,
   requestBody,
+  response,
   SchemaObject
 } from '@loopback/rest';
 import {SecurityBindings, securityId, UserProfile} from '@loopback/security';
@@ -123,7 +125,6 @@ export class UserController {
     return currentUserProfile[securityId];
   }
 
-  @authenticate('jwt')
   @post('/signup', {
     responses: {
       '200': {
@@ -159,4 +160,24 @@ export class UserController {
 
     return savedUser;
   }
+
+  @get('/users')
+  @response(200, {
+    description: 'Array of Users model instances',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'array',
+          items: getModelSchemaRef(User, {includeRelations: true}),
+        },
+      },
+    },
+  })
+  async find(
+    @param.filter(User) filter?: Filter<User>,
+  ): Promise<User[]> {
+    return this.userRepository.find(filter);
+  }
+
+
 }

@@ -9,7 +9,7 @@ import {Profile} from './profile.model';
 
 @model({
   settings: {
-    strict: false,
+    strict: true,
   },
 })
 export class User extends Entity {

@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators'
 
 import { environment } from '../environments/environment'
 import { User } from '../app/models/user'
-import { Role } from 'src/app/models/role'
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -40,7 +39,7 @@ export class AuthService {
       )
     }
 
-    whoAmI ({ token }: User): Observable<Number>  {
+    whoAmI ({ token }: User): Observable<any>  {
       const headers = { headers: new HttpHeaders().set('Authorization', `Bearer ${ token }`) }
       return this.http.get(`${environment.apiUrl}/whoAmI`, headers)
         .pipe(map((userId: number) => userId))

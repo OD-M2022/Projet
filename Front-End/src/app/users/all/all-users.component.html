@@ -1,0 +1,68 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">  
+    <div class="row">
+      <h1 class="text-center">Liste des salariés</h1>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="form-group form-inline">
+            <label for="filtre">Filtre </label>
+              <select class="form-control" (change)="onFilterChange($event.target.value)">
+                <option value="ALL">Tout</option>
+                <option *ngFor="let statut of profileStatut" value="{{ statut.value }}">{{ statut.name }}</option>
+            </select>
+          </div> 
+        </div>
+      </div>
+      <div class="col-md-6 text-right">
+        <div class="row">
+          <form [formGroup]="userForm" (ngSubmit)="updateStatut()">
+            <div class="form-group form-inline">
+              <label for="status">Modifier statut </label>             
+              <select class="form-control" formControlName="statut">
+                <option *ngFor="let statut of profileStatut" [ngValue]="statut.value">{{ statut.name }}</option>
+              </select>
+              <button [class.disabled]="this.disabled" [class.btn-primary]="!this.disabled" [disabled]="this.disabled" class="form-control btn btn-default">
+                <span *ngIf="this.loading" class="spin-loader"></span>
+                <span *ngIf="!this.loading">Envoyer</span>
+              </button>
+            </div> 
+          </form>
+        </div>
+      </div>
+      <div class="table-responsive card-box col-xs-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><input [checked]="this.allSelected"(change)="checkUncheckAll($event)" name="checkbox" type="checkbox" class="checkbox"></th>
+              <th class="text-center"><b>Matricule</b></th>
+              <th class="text-center"><b>Nom</b></th>
+              <th class="text-center"><b>Prénom</b></th>
+              <th class="text-center"><b>Numéro CIN</b></th>
+              <th class="text-center"><b>Telephone</b></th>
+              <th class="text-center"><b>Poste</b></th>
+              <th class="text-center"><b>Statut</b></th> 
+              <th class="text-center"><b>Actions</b></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of (users | filterByStatut: filterStatut)">
+              <td><input [checked]="user.selected" (change)="onCheckbox($event)" name="checkbox" type="checkbox" class="checkbox" value="{{ user.id }}"></td>
+              <td class="text-center"> {{ user.profile.matricule }} </td>
+              <td class="text-center"> {{ user.profile.nom }} </td>
+              <td class="text-center"> {{ user.profile.prenom }} </td>
+              <td class="text-center"> {{ user.profile.numeroCIN }} </td>
+              <td class="text-center"> {{ user.profile.numeroTelephoneN1 }} </td>
+              <td class="text-center"> {{ user.profile.poste }} </td>
+              <td class="text-center"> {{ this.getStatut(user.profile.statut)}} </td> 
+              <td class="text-center" style="width: 100px">
+                <span class="fa fa-undo"></span>
+                <span class="fa fa-eye" alt="Consulter" routerLink="/users/view/{{user.id}}"></span>
+                <span class="fa fa-pencil" alt="Modifier" routerLink="/users/edit/{{user.id}}"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>  
+  </div>
+</div>

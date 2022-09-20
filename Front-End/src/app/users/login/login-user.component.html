@@ -8,18 +8,18 @@
           <a href="javascript:"><img src="assets/img/avatar.png" alt="Focus Technologies"></a>
         </div>
 
-        <form [formGroup]="authenticationForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
           <div *ngIf="this.error === true" class="alert alert-danger" role="alert">Invalid email or password</div>
 
-          <div [class.has-error]="authenticationForm.get('email').invalid" class="form-group form-focus">
-            <label class="control-label" placeholder="Email">Email</label>
+          <div [class.has-error]="userForm.get('email').invalid" class="form-group form-focus">
+            <label [class.is-dirty]="userForm.get('email').dirty" class="control-label" placeholder="Email">Email</label>
             <input class="form-control floating" type="email" formControlName="email" required>
           </div>
 
 
-          <div [class.has-error]="authenticationForm.get('password').invalid" class="form-group form-focus">
-            <label class="control-label" placeholder="Password">Password</label>
+          <div [class.has-error]="userForm.get('password').invalid" class="form-group form-focus">
+            <label [class.is-dirty]="userForm.get('password').dirty" class="control-label" placeholder="Password">Password</label>
             <input class="form-control floating" type="password" formControlName="password" required>
           </div>
 

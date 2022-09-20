@@ -20,18 +20,26 @@ import { Role } from "./models/role"
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
-import { AllEmployeesComponent } from './employees/all-employees/all-employees.component';
+import { AddUserComponent } from './users/add/add-user.component';
+import { EditUserComponent } from './users/edit/edit-user.component';
+import { AllUsersComponent } from './users/all/all-users.component';
+import { UserPipe } from './pipes/user.pipe';
+import { ViewUserComponent } from './users/view/view-user.component';
+import { LoginUserComponent } from './users/login/login-user.component';
 
 enableProdMode();
 
 const routes: Routes = [
   { path: '', redirectTo: 'profile/edit', pathMatch: 'full' },
-  { path: 'login', component: LoginPageComponent, canActivate: [LoginGuard] },
-  { path: 'profile/edit', component: ProfileEditComponent , canActivate: [AuthGuard] },
-  { path: 'employees/all-employees', component: AllEmployeesComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
-  
+  //
+  { path: 'login', component: LoginUserComponent , canActivate: [LoginGuard] },
+  { path: 'users/all', component: AllUsersComponent , canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
+  { path: 'users/add', component: AddUserComponent , canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
+  { path: 'users/edit/:id', component: EditUserComponent , canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
+  { path: 'users/view/:id', component: ViewUserComponent , canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
+  { path: 'profile', component: ViewUserComponent , canActivate: [AuthGuard] },
+  { path: 'profile/edit', component: EditUserComponent , canActivate: [AuthGuard] },
+  //  
 ];
 
 @NgModule({
@@ -39,10 +47,14 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    LoginPageComponent,
-    ProfileEditComponent,
-    AllEmployeesComponent,
-
+    //
+    UserPipe,
+    LoginUserComponent,
+    AddUserComponent,
+    EditUserComponent,
+    AllUsersComponent,
+    ViewUserComponent,
+    //
     ],
   imports: [
     HttpClientModule,
@@ -53,7 +65,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     NgSlimScrollModule,
     BsDatepickerModule.forRoot(),
-  
     RouterModule.forRoot(routes)
   ],
   providers: [

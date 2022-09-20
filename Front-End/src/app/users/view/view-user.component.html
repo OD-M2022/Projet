@@ -1,0 +1,300 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div class="row">
+      <div class="col-sm-10">
+        <h4 *ngIf="this.authService.userValue.role === 'Admin'" class="page-title">Fiche salarié</h4>
+        <h4 *ngIf="this.authService.userValue.role === 'User'" class="page-title">Mon profile</h4>
+      </div>
+      <div *ngIf="this.authService.userValue.role === 'Admin'" class="col-sm-2 text-right">
+        <button class="form-control btn btn-default" routerLink="/users/edit/{{this.userId}}">Modifier</button>
+      </div>
+    </div>
+
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Profile statut</h3>
+        <div class="row">
+          <div class="form-group col-md-12 form-focus">
+            <label [class.is-dirty]="userForm.get('statut').dirty" class="control-label" placeholder="statut">statut</label>
+            <select class="form-control" formControlName="statut" readonly disabled>
+              <option *ngFor="let statut of profileStatut" [ngValue]="statut.value">{{ statut.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Informations Personnelles</h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-img-wrap">
+              <img class="inline-block" src="assets/img/me.jpg" alt="user">
+            </div>
+            <div class="profile-basic">
+              <div class="row">
+                <div class="form-group col-md-4 form-focus">
+                  <label [class.is-dirty]="userForm.get('matricule').dirty" class="control-label" placeholder="Matricule">matricule</label>
+                  <input class="form-control floating" type="text" formControlName="matricule" readonly disabled>
+                </div>
+                <div [class.has-error]="userForm.get('numeroCIN').invalid" class="form-group col-md-4 form-focus">
+                  <label [class.is-dirty]="userForm.get('numeroCIN').dirty" class="control-label" placeholder="numeroCIN">numeroCIN</label>
+                  <input class="form-control floating" type="text" formControlName="numeroCIN" eadonly disabled>
+                </div>
+                <div [class.has-error]="userForm.get('poste').invalid" class="form-group col-md-4 form-focus">
+                  <label [class.is-dirty]="userForm.get('poste').dirty"  class="control-label" placeholder="poste">poste</label>
+                  <input class="form-control floating" type="text" formControlName="poste" eadonly disabled>
+                </div>
+              </div>
+            </div>
+            <div class="profile-basic">
+              <div class="row">
+                <div [class.has-error]="userForm.get('nom').invalid" class="form-group col-md-4 form-focus">
+                  <label [class.is-dirty]="userForm.get('nom').dirty" [class.is-dirty]="userForm.get('nom').dirty" class="control-label" placeholder="nom">nom</label>
+                  <input class="form-control floating" type="text" formControlName="nom" eadonly disabled>
+                </div>
+                <div [class.has-error]="userForm.get('prenom').invalid" class="form-group col-md-4 form-focus">
+                  <label [class.is-dirty]="userForm.get('prenom').dirty" class="control-label" placeholder="prenom">prenom</label>
+                  <input class="form-control floating" type="text" formControlName="prenom" eadonly disabled>
+                </div>
+                <div [class.has-error]="userForm.get('dateEmbauche').invalid" class="form-group col-md-4 form-focus">
+                  <label [class.is-dirty]="userForm.get('dateEmbauche').dirty" class="control-label" placeholder="dateEmbauche">dateEmbauche</label>
+                  <input bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" class="form-control floating" type="text" formControlName="dateEmbauche" eadonly disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Tenue de travail</h3>
+        <div class="row">
+          <div [class.has-error]="userForm.get('taillePull').invalid" class="form-group col-md-12 form-focus">
+            <label [class.is-dirty]="userForm.get('taillePull').dirty" class="control-label" placeholder="taillePull">taillePull</label>
+            <select name="taillePull" id="taillePull" class="form-control floating" formControlName="taillePull" readonly disabled>
+              <option *ngFor="let taillePull of taillesPull" [ngValue]="taillePull">{{ taillePull }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Situation familiale</h3>
+        <div class="row">
+          <div [class.has-error]="userForm.get('situationFamiliale').invalid" class="form-group col-md-12 form-focus">
+            <label [class.is-dirty]="userForm.get('situationFamiliale').dirty" class="control-label" placeholder="situationFamiliale">situationFamiliale</label>
+            <select name="situationFamiliale" id="situationFamiliale" class="form-control floating" formControlName="situationFamiliale" readonly disabled>
+              <option *ngFor="let situationFamiliale of situationsFamiliale" [ngValue]="situationFamiliale">{{ situationFamiliale }}</option>
+            </select>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div [class.has-error]="userForm.get('nomConjoint').invalid" class="form-group col-md-6 form-focus">
+                <label [class.is-dirty]="userForm.get('nomConjoint').dirty" class="control-label" placeholder="nomConjoint">nomConjoint</label>
+                <input class="form-control floating" type="text" formControlName="nomConjoint" eadonly disabled>
+              </div>
+              <div [class.has-error]="userForm.get('prenomConjoint').invalid" class="form-group col-md-6 form-focus">
+                <label [class.is-dirty]="userForm.get('prenomConjoint').dirty" class="control-label" placeholder="prenomConjoint">prenomConjoint</label>
+                <input class="form-control floating" type="text" formControlName="prenomConjoint" eadonly disabled>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div [class.has-error]="userForm.get('dateNaissanceConjoint').invalid" class="form-group col-md-6 form-focus">
+                <label [class.is-dirty]="userForm.get('dateNaissanceConjoint').dirty" class="control-label" placeholder="dateNaissanceConjoint">dateNaissanceConjoint</label>
+                <input bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" class="form-control floating" type="text" formControlName="dateNaissanceConjoint" eadonly disabled>
+              </div>
+              <div [class.has-error]="userForm.get('numeroTelephoneConjoint').invalid" class="form-group col-md-6 form-focus">
+                <label [class.is-dirty]="userForm.get('numeroTelephoneConjoint').dirty" class="control-label" placeholder="numeroTelephoneConjoint">numeroTelephoneConjoint</label>
+                <input class="form-control floating" type="text" formControlName="numeroTelephoneConjoint" eadonly disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Lien de Parenté</h3>
+        <div class="row">
+          <div [class.has-error]="userForm.get('proches').invalid" class="form-group col-md-6 col-xs-12 form-focus">
+            <label class="control-label" placeholder="proches">Avez-vous un proche qui travaille à AZIZA ?</label>
+          </div>
+          <div [class.has-error]="userForm.get('proches').invalid" class="form-group col-md-6 form-focus">
+            <label for="proches" class="col-md-3">
+              <input type="radio" name="proches" id="proches" class="form-check-input" formControlName="proches" value="oui" readonly disabled>
+              Oui
+            </label>
+            <label for="proches1" class="col-md-3">
+              <input type="radio" name="proches" id="proches1" class="form-check-input" formControlName="proches" value="non" readonly disabled>
+              non
+            </label>
+          </div>
+          <div [class.has-error]="userForm.get('nombreProches').invalid" class="form-group col-md-6 form-focus">
+            <label class="control-label" placeholder="nombreProches">Nombre de proche(s)</label>
+          </div>
+          <div [class.has-error]="userForm.get('nombreProches').invalid" class="form-group col-md-6 form-focus">
+            <label [class.is-dirty]="userForm.get('nombreProches').dirty" class="control-label" placeholder="nombreProches">nombreProches</label>
+            <select name="nombreProches" id="nombreProches" class="form-control floating" formControlName="nombreProches" readonly disabled>
+              <option *ngFor="let nombreProche of nombreProches" [ngValue]="nombreProche">{{ nombreProche }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Cordonnées</h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div [class.has-error]="userForm.get('adressN1').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('adressN1').dirty" class="control-label" placeholder="adressN1">adressN1</label>
+                <input class="form-control floating" type="text" formControlName="adressN1" eadonly disabled>
+              </div>
+              <div [class.has-error]="userForm.get('villeN1').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('villeN1').dirty" class="control-label" placeholder="villeN1">villeN1</label>
+                <input class="form-control floating" type="text" formControlName="villeN1" eadonly disabled>
+              </div>
+              <div [class.has-error]="userForm.get('codePostalN1').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('codePostalN1').dirty" class="control-label" placeholder="codePostalN1">codePostalN1</label>
+                <input class="form-control floating" type="text" formControlName="codePostalN1" eadonly disabled>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+              <div [class.has-error]="userForm.get('adressN2').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('adressN2').dirty" class="control-label" placeholder="adressN2">adressN2</label>
+                <input class="form-control floating" type="text" formControlName="adressN2" eadonly disabled>
+              </div>
+              <div [class.has-error]="userForm.get('villeN2').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('villeN2').dirty" class="control-label" placeholder="villeN2">villeN2</label>
+                <input class="form-control floating" type="text" formControlName="villeN2" eadonly disabled>
+              </div>
+              <div [class.has-error]="userForm.get('codePostalN2').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('codePostalN2').dirty" class="control-label" placeholder="codePostalN2">codePostalN2</label>
+                <input class="form-control floating" type="text" formControlName="codePostalN2" eadonly disabled>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+              <div [class.has-error]="userForm.get('numeroTelephoneN1').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('numeroTelephoneN1').dirty" class="control-label" placeholder="numeroTelephoneN1">numeroTelephoneN1</label>
+                <input class="form-control floating" type="text" formControlName="numeroTelephoneN1" eadonly disabled>
+              </div>
+              <div [class.has-error]="userForm.get('numeroTelephoneN2').invalid" class="form-group col-md-4 form-focus">
+                <label [class.is-dirty]="userForm.get('numeroTelephoneN2').dirty" class="control-label" placeholder="numeroTelephoneN2">numeroTelephoneN2</label>
+                <input class="form-control floating" type="text" formControlName="numeroTelephoneN2" eadonly disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Santé</h3>
+        <div class="row">
+          <div [class.has-error]="userForm.get('passeportSanitaire').invalid" class="form-group col-md-6 col-xs-12 form-focus">
+            <label class="control-label" placeholder="passeportSanitaire">Est ce que vous avez eu votre passeport sanitaire ?</label>
+          </div>
+          <div [class.has-error]="userForm.get('passeportSanitaire').invalid" class="form-group col-md-6 form-focus">
+            <label for="passeportSanitaire" class="col-md-3">
+              <input type="radio" name="passeportSanitaire" id="passeportSanitaire" class="form-check-input" formControlName="passeportSanitaire" value="oui" readonly disabled>
+              Oui
+            </label>
+            <label for="passeportSanitaire1" class="col-md-3">
+              <input type="radio" name="passeportSanitaire" id="passeportSanitaire1" class="form-check-input" formControlName="passeportSanitaire" value="non" readonly disabled>
+              Non
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div [class.has-error]="userForm.get('antecedentMaladie').invalid" class="form-group col-md-6 form-focus">
+            <label class="control-label" placeholder="antecedentMaladie">Avez-vous un antécédent de maladie ?</label>
+          </div>
+          <div [class.has-error]="userForm.get('antecedentMaladie').invalid" class="form-group col-md-6 form-focus">
+            <label for="antecedentMaladie" class="col-md-3">
+              <input type="radio" name="antecedentMaladie" id="antecedentMaladie" class="form-check-input" formControlName="antecedentMaladie" value="oui" readonly disabled>
+              Oui
+            </label>
+            <label for="antecedentMaladie1" class="col-md-3">
+              <input type="radio" name="antecedentMaladie" id="antecedentMaladie1" class="form-check-input" formControlName="antecedentMaladie" value="non" readonly disabled>
+              Non
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div [class.has-error]="userForm.get('typeMaladie').invalid" class="form-group col-md-6 form-focus">
+            <label class="control-label" placeholder="typeMaladie">Type de maladie</label>
+          </div>
+          <div [class.has-error]="userForm.get('typeMaladie').invalid" class="form-group col-md-6 form-focus">
+            <label [class.is-dirty]="userForm.get('typeMaladie').dirty" class="control-label" placeholder="typeMaladie">typeMaladie</label>
+            <select name="typeMaladie" id="typeMaladie" class="form-control floating" formControlName="typeMaladie" readonly disabled>
+              <option *ngFor="let typeMaladie of typeMaladies" [ngValue]="typeMaladie">{{ typeMaladie }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Autres Activités</h3>
+        <div class="row">
+          <div [class.has-error]="userForm.get('activites').invalid" class="form-group col-md-6 form-focus">
+            <label class="control-label" placeholder="activites">Est-ce que vous êtes actifs dans la vie associative ou autre ?</label>
+          </div>
+          <div [class.has-error]="userForm.get('activites').invalid" class="form-group col-md-6 form-focus">
+            <label for="activites" class="col-md-3">
+              <input type="radio" name="activites" id="activites" class="form-check-input" formControlName="activites" value="oui" readonly disabled>
+              Oui
+            </label>
+            <label for="activites1" class="col-md-3">
+              <input type="radio" name="activites" id="activites1" class="form-check-input" formControlName="activites" value="non" readonly disabled>
+              Non
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <textarea
+              placeholder="A préciser : Loisirs, Sport ..." 
+              id="activitesExemple" 
+              class="form-control" 
+              formControlName="activitesExemple"
+              readonly disabled
+              >
+            </textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h4 class="page-title"></h4>
+        <h3 class="card-title">Niveau d'étude</h3>
+        <div class="row">
+          <div [class.has-error]="userForm.get('niveauEtude').invalid" class="form-group col-md-12 form-focus">
+            <label [class.is-dirty]="userForm.get('niveauEtude').dirty" class="control-label" placeholder="niveauEtude">niveauEtude</label>
+            <select name="niveauEtude" id="niveauEtude" class="form-control floating" formControlName="niveauEtude" readonly disabled>
+              <option *ngFor="let niveauEtude of niveauEtudes" [ngValue]="niveauEtude">{{ niveauEtude }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

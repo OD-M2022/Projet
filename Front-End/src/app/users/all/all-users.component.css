@@ -1,0 +1,12 @@
+.form-focus .control-label {
+    padding-left: 15px;
+}
+
+.fa {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.fa:hover {
+    color:#ff9b44;
+}

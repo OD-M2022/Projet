@@ -1,22 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-
 import { AuthService } from '../../../Services/auth.service';
 import { Role } from '../../models/role';
 import { User } from '../../models/user';
 import { first } from 'rxjs';
-import { EmployeesService } from 'src/Services/employees.service';
 
 @Component({
   selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  templateUrl: './login-user.component.html',
+  styleUrls: ['./login-user.component.css']
 })
 
-export class LoginPageComponent {
-  authenticationForm: FormGroup;
+export class LoginUserComponent {
+  userForm: FormGroup;
   loading = false;
   submitted = false;
   error: boolean = false;
@@ -24,11 +21,9 @@ export class LoginPageComponent {
   constructor(
     public fb: FormBuilder,
     public router: Router,
-    private authService: AuthService,
-    private employeeService: EmployeesService,
-    private location: Location
+    private authService: AuthService
   ) {
-    this.authenticationForm = this.fb.group({
+    this.userForm = this.fb.group({
       email: ['', Validators.email],
       password: ['', Validators.required],
     });
@@ -38,13 +33,13 @@ export class LoginPageComponent {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.authenticationForm.invalid) {
+    if (this.userForm.invalid) {
       return;
     }
 
     this.loading = true;
 
-    const { email, password } = this.authenticationForm.value
+    const { email, password } = this.userForm.value
 
     this.authService.login(email, password).pipe(first()).subscribe({
       next: (user: User) => this.identify(user),
@@ -57,8 +52,8 @@ export class LoginPageComponent {
 
   private identify (user: User) {
     this.authService.whoAmI(user).pipe(first()).subscribe({
-      next: (userId: number) => this.setUser({...user, id: userId}),
-      error: error => {
+      next: (userId) => this.setUser({...user, id: userId}),
+      error: () => {
         this.error = true;
         this.loading = false;
       }
@@ -75,7 +70,7 @@ export class LoginPageComponent {
       if (user.role === Role.User) {
         this.router.navigate([`profile/edit`]);
       } else if (user.role === Role.Admin) {
-        this.router.navigate([`employees/all-employees`]);
+        this.router.navigate([`users/all`]);
       }
     })
   }
