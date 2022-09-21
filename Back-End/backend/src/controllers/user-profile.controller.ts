@@ -1,3 +1,4 @@
+import { authenticate } from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -25,7 +26,8 @@ export class UserProfileController {
   constructor(
     @repository(UserRepository) protected userRepository: UserRepository,
   ) { }
-
+  
+  @authenticate('jwt')
   @get('/users/{id}/profile', {
     responses: {
       '200': {
@@ -45,6 +47,7 @@ export class UserProfileController {
     return this.userRepository.profile(id).get(filter);
   }
 
+  @authenticate('jwt')
   @post('/users/{id}/profile', {
     responses: {
       '200': {
@@ -70,6 +73,7 @@ export class UserProfileController {
     return this.userRepository.profile(id).create(profile);
   }
 
+  @authenticate('jwt')
   @patch('/users/{id}/profile', {
     responses: {
       '200': {
@@ -93,6 +97,7 @@ export class UserProfileController {
     return this.userRepository.profile(id).patch(profile, where);
   }
 
+  @authenticate('jwt')
   @del('/users/{id}/profile', {
     responses: {
       '200': {

@@ -66,11 +66,13 @@ export class LoginUserComponent {
   }
 
   private redirect () {
-    this.authService.user.subscribe(user => {
-      if (user.role === Role.User) {
-        this.router.navigate([`profile/edit`]);
-      } else if (user.role === Role.Admin) {
-        this.router.navigate([`users/all`]);
+    this.authService.user.subscribe((user: User) => {
+      if (user) {
+        if (user.role === Role.User) {
+          this.router.navigate([`profile/edit`]);
+        } else if (user.role === Role.Admin) {
+          this.router.navigate([`users/all`]);
+        }
       }
     })
   }

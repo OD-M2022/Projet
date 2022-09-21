@@ -161,6 +161,7 @@ export class UserController {
     return savedUser;
   }
 
+  @authenticate('jwt')
   @get('/users')
   @response(200, {
     description: 'Array of Users model instances',

@@ -41,8 +41,8 @@ export class AuthService {
 
     whoAmI ({ token }: User): Observable<any>  {
       const headers = { headers: new HttpHeaders().set('Authorization', `Bearer ${ token }`) }
-      return this.http.get(`${environment.apiUrl}/whoAmI`, headers)
-        .pipe(map((userId: number) => userId))
+      return this.http.get<string>(`${environment.apiUrl}/whoAmI`, { ...headers, responseType: 'test' as 'json' } )
+        .pipe(map((userId: string) => userId))
     }
 
     setUser (user: User): User {
