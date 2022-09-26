@@ -4994,16 +4994,16 @@ form.ng-dirty .form-focus label.is-dirty {
 }
 
 .spin-loader {
-	display: inline-block;
+	/* display: inline-block;
     width: 22px;
-    height: 22px;
+    height: 22px; */
   }
   .spin-loader:after {
 	content: " ";
     display: block;
     width: 22px;
     height: 22px;
-    margin: 5px;
+    margin: auto;
     border-radius: 50%;
     border: 2px solid #fff;
     border-color: #fff transparent #fff transparent;
@@ -5016,5 +5016,15 @@ form.ng-dirty .form-focus label.is-dirty {
 	100% {
 	  transform: rotate(360deg);
 	}
+  }
+  
+
+.modal.fade {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+.modal.fade.show {
+	opacity: 1;
   }
   

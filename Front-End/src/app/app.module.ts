@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgSlimScrollModule, SLIMSCROLL_DEFAULTS } from 'ngx-slimscroll';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { JwtInterceptor } from '../Services/jwt.interceptor';
 import { ErrorInterceptor } from '../Services/error.interceptor';
@@ -65,6 +66,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     NgSlimScrollModule,
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [

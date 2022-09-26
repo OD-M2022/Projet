@@ -8,9 +8,8 @@ export const USER_TYPES_MALADIES: string[] = ['Maladie chronique', 'Maladie osse
 export const USER_NIVEAU_ETUDES: string[] = ['Primaire', 'Niveau Bac', 'BTS', 'BTP', 'Bac+1', 'Bac+2', 'Bac+3', 'Bac+41', 'Bac+5']
 export const USER_PROFILE_STATUT: UserStatut[] = [
   {value: 'CREATED', name: 'En Attente'},
-  {value: 'UPDATED', name: 'Modifié'},
   {value: 'VALIDATED', name: 'Validé'},
-  {value: 'FINISHED', name: 'Terminé'}
+  {value: 'ARCHIVATED', name: 'Archivé'}
 ]
 
 export class UserStatut {
@@ -73,5 +72,6 @@ export class UserProfile {
   niveauBac: string
   dateObtentionBac: string
   experiencePro: string
+  editedFields: string
   userId?: string
 }

@@ -36,29 +36,29 @@ export class AddUserComponent implements OnInit {
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       dateEmbauche: ['', Validators.required],
-      taillePull: ['', Validators.required],
-      situationFamiliale: ['', Validators.required],
-      nomConjoint: ['', Validators.required],
-      prenomConjoint: ['', Validators.required],
-      dateNaissanceConjoint: ['', Validators.required],
-      numeroTelephoneConjoint: ['', Validators.required],
-      proches: ['', Validators.required],
-      nombreProches: ['', Validators.required],
-      adressN1: ['', Validators.required],
-      villeN1: ['', Validators.required],
-      codePostalN1: ['', Validators.required],
-      adressN2: ['', Validators.required],
-      villeN2: ['', Validators.required],
-      codePostalN2: ['', Validators.required],
-      numeroTelephoneN1: ['', Validators.required],
-      numeroTelephoneN2: ['', Validators.required],
-      passeportSanitaire: ['', Validators.required],
-      antecedentMaladie: ['', Validators.required],
-      typeMaladie: ['', Validators.required],
-      activites: ['', Validators.required],
-      activitesExemple: ['', Validators.required],
-      niveauEtude: ['', Validators.required],
-      statut: ['CREATED', Validators.required],
+      taillePull: [''],
+      situationFamiliale: [''],
+      nomConjoint: [''],
+      prenomConjoint: [''],
+      dateNaissanceConjoint: [''],
+      numeroTelephoneConjoint: [''],
+      proches: [''],
+      nombreProches: [''],
+      adressN1: [''],
+      villeN1: [''],
+      codePostalN1: [''],
+      adressN2: [''],
+      villeN2: [''],
+      codePostalN2: [''],
+      numeroTelephoneN1: [''],
+      numeroTelephoneN2: [''],
+      passeportSanitaire: [''],
+      antecedentMaladie: [''],
+      typeMaladie: [''],
+      activites: [''],
+      activitesExemple: [''],
+      niveauEtude: [''],
+      statut: ['CREATED'],
     });
   }
 
@@ -89,7 +89,11 @@ export class AddUserComponent implements OnInit {
     const userProfile: UserProfile = this.userService.getwithoutCredentials(formValue)
 
     this.userService.createUserProfile(user, userProfile).pipe(first()).subscribe({
-      next: (userProfile: UserProfile) => console.log(userProfile),
+      next: (userProfile: UserProfile) => {
+        this.result = true
+        this.loading = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
       error: error => {
         this.error = true;
         this.loading = false;

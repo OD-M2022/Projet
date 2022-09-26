@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { User, USER_TAILLES_PULL, USER_SITUATIONS_FAMILIALE, USER_NOMBRRE_PROCHES, USER_TYPES_MALADIES, USER_NIVEAU_ETUDES, USER_ROLES, UserProfile, USER_PROFILE_STATUT } from 'src/app/models/user';
+import { USER_TAILLES_PULL, USER_SITUATIONS_FAMILIALE, USER_NOMBRRE_PROCHES, USER_TYPES_MALADIES, USER_NIVEAU_ETUDES, USER_ROLES, UserProfile, USER_PROFILE_STATUT } from 'src/app/models/user';
 import { Role } from 'src/app/models/role';
 import { UserService } from 'src/Services/user.service';
 import { first } from 'rxjs';
@@ -15,6 +15,7 @@ import { AuthService } from 'src/Services/auth.service';
 
 export class EditUserComponent implements OnInit {
   userForm: FormGroup;
+  defaultForm: UserProfile
   userId: string
   roles: Role[] = USER_ROLES
   taillesPull: string[] = USER_TAILLES_PULL
@@ -36,29 +37,29 @@ export class EditUserComponent implements OnInit {
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       dateEmbauche: ['', Validators.required],
-      taillePull: ['', Validators.required],
-      situationFamiliale: ['', Validators.required],
-      nomConjoint: ['', Validators.required],
-      prenomConjoint: ['', Validators.required],
-      dateNaissanceConjoint: ['', Validators.required],
-      numeroTelephoneConjoint: ['', Validators.required],
-      proches: ['', Validators.required],
-      nombreProches: ['', Validators.required],
-      adressN1: ['', Validators.required],
-      villeN1: ['', Validators.required],
-      codePostalN1: ['', Validators.required],
-      adressN2: ['', Validators.required],
-      villeN2: ['', Validators.required],
-      codePostalN2: ['', Validators.required],
-      numeroTelephoneN1: ['', Validators.required],
-      numeroTelephoneN2: ['', Validators.required],
-      passeportSanitaire: ['', Validators.required],
-      antecedentMaladie: ['', Validators.required],
-      typeMaladie: ['', Validators.required],
-      activites: ['', Validators.required],
-      activitesExemple: ['', Validators.required],
-      niveauEtude: ['', Validators.required],
-      statut: ['', Validators.required],
+      taillePull: [''],
+      situationFamiliale: [''],
+      nomConjoint: [''],
+      prenomConjoint: [''],
+      dateNaissanceConjoint: [''],
+      numeroTelephoneConjoint: [''],
+      proches: [''],
+      nombreProches: [''],
+      adressN1: [''],
+      villeN1: [''],
+      codePostalN1: [''],
+      adressN2: [''],
+      villeN2: [''],
+      codePostalN2: [''],
+      numeroTelephoneN1: [''],
+      numeroTelephoneN2: [''],
+      passeportSanitaire: [''],
+      antecedentMaladie: [''],
+      typeMaladie: [''],
+      activites: [''],
+      activitesExemple: [''],
+      niveauEtude: [''],
+      statut: [''],
     });
   }
 
@@ -66,12 +67,21 @@ export class EditUserComponent implements OnInit {
     this.userId = this.route.snapshot.paramMap.get('id')||this.authService.userValue.id
     this.userService.getProfile(this.userId).pipe(first()).subscribe({
       next: (user: UserProfile) => {
-        for (const key in user) {
-          if (this.userForm.controls[key]) {
-            this.userForm.controls[key].setValue(user[key])
-            this.userForm.controls[key].markAsDirty()
+        this.defaultForm = user
+        const editedFields = this.defaultForm.editedFields
+        console.log(editedFields)
+        // this.editedFields = JSON.parse(this.defaultForm['editedFields'])
+          for (const key in user) {
+            if (this.userForm.controls[key]) {
+              this.userForm.controls[key].setValue(user[key])
+              this.userForm.controls[key].markAsDirty()
+              if (editedFields) {
+                if (JSON.parse(editedFields)[key]) {
+                  this.userForm.controls[key].disable()
+                }
+              }
+            }
           }
-        }
       },
       error: error => {
         this.error = true;
@@ -91,16 +101,39 @@ export class EditUserComponent implements OnInit {
 
     this.loading = true;
 
-    if (this.authService.userValue.role === Role.User) {
-      this.userForm.controls['statut'].setValue('UPDATED')
+    const editedFields: any = {}
+    let defaultEditedFields: any = {}
+
+    if (this.defaultForm.editedFields && this.defaultForm.editedFields !== '') {
+      defaultEditedFields = JSON.parse(this.defaultForm.editedFields)
     }
 
-    this.userService.updateProfile(this.userId, this.userForm.value).pipe(first()).subscribe({
-      next: (userProfile: UserProfile) => console.log(userProfile),
+    for (const key in this.userForm.controls) {
+      const field = this.userForm.controls[key]
+      if (field.value !== this.defaultForm[key]) {
+        editedFields[key] = field.value
+      }
+    }
+
+    defaultEditedFields = {...defaultEditedFields, ...editedFields}
+
+    this.userService.upateEditedFields(this.userId, JSON.stringify(defaultEditedFields), 'CREATED').pipe(first()).subscribe({
+      next: (userProfile: UserProfile) => {
+        for (const key in defaultEditedFields) {
+          if (this.userForm.controls[key]) {
+            this.userForm.controls[key].setValue(this.defaultForm[key])
+            this.userForm.controls[key].disable()
+            this.defaultForm.editedFields = defaultEditedFields
+          }
+        }
+        this.result = true
+        this.loading = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
       error: error => {
         this.error = true;
         this.loading = false;
       }
-    });
+    })
   }
 }

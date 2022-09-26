@@ -51,6 +51,12 @@ export class UserService {
     )
   }
 
+  upateEditedFields (userId: string, editedFields: string, statut: string): Observable<UserProfile> {
+    return this.http.patch<UserProfile>(`${environment.apiUrl}/users/${userId}/profile`, {editedFields: editedFields, statut: statut})
+      .pipe(map((userProfile: UserProfile) => userProfile)
+    )
+  }
+
   getProfile (userId: string): Observable<UserProfile> {
     return this.http.get<UserProfile>(`${environment.apiUrl}/users/${userId}/profile`)
       .pipe(map((user: UserProfile) => user)

@@ -257,6 +257,12 @@ export class Profile extends Entity {
 
   @property({
     type: 'string',
+    required: false,
+  })
+  editedFields: string;
+
+  @property({
+    type: 'string',
   })
   userId?: string;
   // Define well-known properties here

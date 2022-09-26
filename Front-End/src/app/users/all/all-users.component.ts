@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/Services/user.service';
 import { first } from 'rxjs';
 import { USER_PROFILE_STATUT, UserItem, UserStatut, UserProfile } from 'src/app/models/user';
-import { AuthService } from 'src/Services/auth.service';
 import { Role } from 'src/app/models/role';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,16 +15,19 @@ import { Role } from 'src/app/models/role';
 })
 
 export class AllUsersComponent implements OnInit {
+  modalRef?: BsModalRef
+  modalContent: UserProfile
   userForm: FormGroup;
   users: UserItem[] = []
   profileStatut: Object[] = USER_PROFILE_STATUT
+  statutValidattion: Object[] = [USER_PROFILE_STATUT[1], USER_PROFILE_STATUT[2]]
   filterStatut: string = ''
   allSelected: boolean = false
   selectedUsers: UserItem[] = []
   loading: boolean = false
   error: boolean = false
 
-  constructor(public fb: FormBuilder, private userService: UserService, private authService: AuthService) {
+  constructor(public fb: FormBuilder, private userService: UserService,  public router: Router, private modalService: BsModalService) {
     this.userForm = this.fb.group({
       statut: ['', Validators.required]
     });
@@ -86,7 +90,19 @@ export class AllUsersComponent implements OnInit {
       this.loading = true
       
       selectedUsers.map((user: UserItem) => {
-        this.userService.upateUserProfileStatut(user.id, statut).pipe(first()).subscribe({
+        let editedFields: any = user.profile.editedFields
+
+        if (editedFields) {
+          editedFields = JSON.parse(editedFields)
+          for (const key in editedFields) {
+            user.profile[key] = editedFields[key]
+          }
+        }
+        
+        user.profile.editedFields = ''
+        user.profile.statut = statut
+
+        this.userService.updateProfile(user.id, user.profile).pipe(first()).subscribe({
           next: () => this.onNext(user, statut),
           error: error => {
             this.error = true;
@@ -97,12 +113,38 @@ export class AllUsersComponent implements OnInit {
     }
   }
 
+  openModal(template: TemplateRef<any>, user: UserItem) {
+
+    if (user.profile.statut !== 'CREATED' || !user.profile.editedFields || user.profile.editedFields === '') {
+      return false
+    }
+
+    const profile = user.profile
+    let editedFields = profile.editedFields
+    if (editedFields) {
+      editedFields = JSON.parse(editedFields)
+    }
+
+    this.modalContent = {...user.profile, editedFields: editedFields}
+    this.modalRef = this.modalService.show(template);
+  }
+
+  editProfile (user: UserItem) {
+    if (user.profile.statut === 'ARCHIVATED') {
+      return false
+    }
+
+    this.router.navigate([`users/edit/${user.id}`]);
+  }
+
   private onNext (user: UserItem, statut: string) {
-    user.profile.statut = statut
-    user.selected = false
-    this.loading = false
-    this.selectedUsers = []
-    this.allSelected = false
+    setTimeout(() => {
+      user.profile.statut = statut
+      user.selected = false
+      this.loading = false
+      this.selectedUsers = []
+      this.allSelected = false
+    }, 1000)
   }
 
   private checkStatutValue (statut: string) {

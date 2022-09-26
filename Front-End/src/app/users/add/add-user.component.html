@@ -9,8 +9,12 @@
 
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
+      <div *ngIf="this.result === true" class="alert alert-success" role="alert">
+        <b>Félicitation !</b> Le formulaire a été envoyé avec succés.
+      </div>
+
       <div *ngIf="this.submitted === true && this.userForm.invalid" class="alert alert-danger" role="alert">
-        Merci de vérifier les champs inavlides.
+        <b>Erreur!</b> Merci de corriger les champs inavlides.
       </div>
 
       <div class="card-box">
@@ -21,7 +25,7 @@
             <div class="profile-connexion">
                 <div [class.has-error]="userForm.get('role').invalid" class="form-group form-focus">
                   <label [class.is-dirty]="userForm.get('role').dirty" class="control-label" placeholder="role">role</label>
-                  <select name="role" id="role" class="form-control floating" formControlName="role" required>
+                  <select name="role" id="role" class="form-control floating" formControlName="role">
                     <option *ngFor="let role of roles" [ngValue]="role">{{ role }}</option>
                   </select>
                 </div>
@@ -39,11 +43,11 @@
               <div class="row">
                 <div [class.has-error]="userForm.get('email').invalid" class="form-group col-md-6 form-focus">
                   <label [class.is-dirty]="userForm.get('email').dirty" class="control-label" placeholder="Email">Email</label>
-                  <input class="form-control floating" type="email" formControlName="email" required>
+                  <input class="form-control floating" type="email" formControlName="email">
                 </div>
                 <div [class.has-error]="userForm.get('password').invalid" class="form-group col-md-6 form-focus">
                   <label [class.is-dirty]="userForm.get('password').dirty" class="control-label" placeholder="password">password</label>
-                  <input class="form-control floating" type="password" formControlName="password" required>
+                  <input class="form-control floating" type="password" formControlName="password">
                 </div>
               </div>
             </div>
@@ -67,15 +71,15 @@
               <div class="row">
                 <div [class.has-error]="userForm.get('matricule').invalid" class="form-group col-md-4 form-focus">
                   <label [class.is-dirty]="userForm.get('matricule').dirty" class="control-label" placeholder="Matricule">matricule</label>
-                  <input class="form-control floating" type="text" formControlName="matricule" required>
+                  <input class="form-control floating" type="text" formControlName="matricule">
                 </div>
                 <div [class.has-error]="userForm.get('numeroCIN').invalid" class="form-group col-md-4 form-focus">
                   <label [class.is-dirty]="userForm.get('numeroCIN').dirty" class="control-label" placeholder="numeroCIN">numeroCIN</label>
-                  <input class="form-control floating" type="text" formControlName="numeroCIN" required>
+                  <input class="form-control floating" type="text" formControlName="numeroCIN">
                 </div>
                 <div [class.has-error]="userForm.get('poste').invalid" class="form-group col-md-4 form-focus">
                   <label [class.is-dirty]="userForm.get('poste').dirty"  class="control-label" placeholder="poste">poste</label>
-                  <input class="form-control floating" type="text" formControlName="poste" required>
+                  <input class="form-control floating" type="text" formControlName="poste">
                 </div>
               </div>
             </div>
@@ -83,15 +87,15 @@
               <div class="row">
                 <div [class.has-error]="userForm.get('nom').invalid" class="form-group col-md-4 form-focus">
                   <label [class.is-dirty]="userForm.get('nom').dirty" [class.is-dirty]="userForm.get('nom').dirty" class="control-label" placeholder="nom">nom</label>
-                  <input class="form-control floating" type="text" formControlName="nom" required>
+                  <input class="form-control floating" type="text" formControlName="nom">
                 </div>
                 <div [class.has-error]="userForm.get('prenom').invalid" class="form-group col-md-4 form-focus">
                   <label [class.is-dirty]="userForm.get('prenom').dirty" class="control-label" placeholder="prenom">prenom</label>
-                  <input class="form-control floating" type="text" formControlName="prenom" required>
+                  <input class="form-control floating" type="text" formControlName="prenom">
                 </div>
                 <div [class.has-error]="userForm.get('dateEmbauche').invalid" class="form-group col-md-4 form-focus">
                   <label [class.is-dirty]="userForm.get('dateEmbauche').dirty" class="control-label" placeholder="dateEmbauche">dateEmbauche</label>
-                  <input bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" class="form-control floating" type="text" formControlName="dateEmbauche" required>
+                  <input bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" class="form-control floating" type="text" formControlName="dateEmbauche">
                 </div>
               </div>
             </div>
@@ -126,11 +130,11 @@
             <div class="row">
               <div [class.has-error]="userForm.get('nomConjoint').invalid" class="form-group col-md-6 form-focus">
                 <label [class.is-dirty]="userForm.get('nomConjoint').dirty" class="control-label" placeholder="nomConjoint">nomConjoint</label>
-                <input class="form-control floating" type="text" formControlName="nomConjoint" required>
+                <input class="form-control floating" type="text" formControlName="nomConjoint">
               </div>
               <div [class.has-error]="userForm.get('prenomConjoint').invalid" class="form-group col-md-6 form-focus">
                 <label [class.is-dirty]="userForm.get('prenomConjoint').dirty" class="control-label" placeholder="prenomConjoint">prenomConjoint</label>
-                <input class="form-control floating" type="text" formControlName="prenomConjoint" required>
+                <input class="form-control floating" type="text" formControlName="prenomConjoint">
               </div>
             </div>
           </div>
@@ -138,11 +142,11 @@
             <div class="row">
               <div [class.has-error]="userForm.get('dateNaissanceConjoint').invalid" class="form-group col-md-6 form-focus">
                 <label [class.is-dirty]="userForm.get('dateNaissanceConjoint').dirty" class="control-label" placeholder="dateNaissanceConjoint">dateNaissanceConjoint</label>
-                <input bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" class="form-control floating" type="text" formControlName="dateNaissanceConjoint" required>
+                <input bsDatepicker [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD-MM-YYYY' }" class="form-control floating" type="text" formControlName="dateNaissanceConjoint">
               </div>
               <div [class.has-error]="userForm.get('numeroTelephoneConjoint').invalid" class="form-group col-md-6 form-focus">
                 <label [class.is-dirty]="userForm.get('numeroTelephoneConjoint').dirty" class="control-label" placeholder="numeroTelephoneConjoint">numeroTelephoneConjoint</label>
-                <input class="form-control floating" type="text" formControlName="numeroTelephoneConjoint" required>
+                <input class="form-control floating" type="text" formControlName="numeroTelephoneConjoint">
               </div>
             </div>
           </div>
@@ -186,15 +190,15 @@
             <div class="row">
               <div [class.has-error]="userForm.get('adressN1').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('adressN1').dirty" class="control-label" placeholder="adressN1">adressN1</label>
-                <input class="form-control floating" type="text" formControlName="adressN1" required>
+                <input class="form-control floating" type="text" formControlName="adressN1">
               </div>
               <div [class.has-error]="userForm.get('villeN1').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('villeN1').dirty" class="control-label" placeholder="villeN1">villeN1</label>
-                <input class="form-control floating" type="text" formControlName="villeN1" required>
+                <input class="form-control floating" type="text" formControlName="villeN1">
               </div>
               <div [class.has-error]="userForm.get('codePostalN1').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('codePostalN1').dirty" class="control-label" placeholder="codePostalN1">codePostalN1</label>
-                <input class="form-control floating" type="text" formControlName="codePostalN1" required>
+                <input class="form-control floating" type="text" formControlName="codePostalN1">
               </div>
             </div>
           </div>
@@ -203,15 +207,15 @@
             <div class="row">
               <div [class.has-error]="userForm.get('adressN2').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('adressN2').dirty" class="control-label" placeholder="adressN2">adressN2</label>
-                <input class="form-control floating" type="text" formControlName="adressN2" required>
+                <input class="form-control floating" type="text" formControlName="adressN2">
               </div>
               <div [class.has-error]="userForm.get('villeN2').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('villeN2').dirty" class="control-label" placeholder="villeN2">villeN2</label>
-                <input class="form-control floating" type="text" formControlName="villeN2" required>
+                <input class="form-control floating" type="text" formControlName="villeN2">
               </div>
               <div [class.has-error]="userForm.get('codePostalN2').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('codePostalN2').dirty" class="control-label" placeholder="codePostalN2">codePostalN2</label>
-                <input class="form-control floating" type="text" formControlName="codePostalN2" required>
+                <input class="form-control floating" type="text" formControlName="codePostalN2">
               </div>
             </div>
           </div>
@@ -220,11 +224,11 @@
             <div class="row">
               <div [class.has-error]="userForm.get('numeroTelephoneN1').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('numeroTelephoneN1').dirty" class="control-label" placeholder="numeroTelephoneN1">numeroTelephoneN1</label>
-                <input class="form-control floating" type="text" formControlName="numeroTelephoneN1" required>
+                <input class="form-control floating" type="text" formControlName="numeroTelephoneN1">
               </div>
               <div [class.has-error]="userForm.get('numeroTelephoneN2').invalid" class="form-group col-md-4 form-focus">
                 <label [class.is-dirty]="userForm.get('numeroTelephoneN2').dirty" class="control-label" placeholder="numeroTelephoneN2">numeroTelephoneN2</label>
-                <input class="form-control floating" type="text" formControlName="numeroTelephoneN2" required>
+                <input class="form-control floating" type="text" formControlName="numeroTelephoneN2">
               </div>
             </div>
           </div>
@@ -309,7 +313,7 @@
               id="activitesExemple" 
               class="form-control" 
               formControlName="activitesExemple"
-              required
+            
               >
             </textarea>
           </div>
@@ -331,7 +335,7 @@
 
       <div [class.has-error]="userForm.get('statut').invalid" class="form-group col-md-4 form-focus hidden">
         <label [class.is-dirty]="userForm.get('statut').dirty" class="control-label" placeholder="statut">statut</label>
-        <input class="form-control floating" type="text" formControlName="statut" required>
+        <input class="form-control floating" type="text" formControlName="statut">
       </div>
 
       <div class="form-group text-center">
