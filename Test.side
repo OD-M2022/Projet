@@ -559,16 +559,6 @@
       ],
       "value": ""
     }, {
-      "id": "89409b0e-1c45-4193-bfdf-46aac9abe5c7",
-      "comment": "",
-      "command": "click",
-      "target": "css=.ng-untouched:nth-child(2)",
-      "targets": [
-        ["css=.ng-untouched:nth-child(2)", "css:finder"],
-        ["xpath=//form/div/select", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "83bfad83-72e8-4e4c-a92d-5d1f72bc6d18",
       "comment": "",
       "command": "select",
