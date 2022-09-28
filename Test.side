@@ -1299,6 +1299,13 @@
       "target": "css=.ng-untouched:nth-child(2)",
       "targets": [],
       "value": "label=Validé"
+    }, {
+      "id": "5346784c-aa09-4f63-a98e-fde204b7deb6",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }],
   "suites": [{

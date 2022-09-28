@@ -102,5 +102,6 @@ describe('Default Suite', function() {
       const dropdown = await driver.findElement(By.css(".ng-untouched:nth-child(2)"))
       await dropdown.findElement(By.xpath("//option[. = 'Validé']")).click()
     }
+    await driver.close()
   })
 })
