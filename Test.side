@@ -547,42 +547,6 @@
         ["xpath=//tr[2]/td[9]/span", "xpath:position"]
       ],
       "value": ""
-    }, {
-      "id": "14d701d6-0b23-45ae-ab9e-54cdd201fd21",
-      "comment": "",
-      "command": "click",
-      "target": "css=.visually-hidden",
-      "targets": [
-        ["css=.visually-hidden", "css:finder"],
-        ["xpath=//div/div/button/span", "xpath:position"],
-        ["xpath=//span[contains(.,'×')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "83bfad83-72e8-4e4c-a92d-5d1f72bc6d18",
-      "comment": "",
-      "command": "select",
-      "target": "css=.ng-untouched:nth-child(2)",
-      "targets": [],
-      "value": "label=Validé"
-    }, {
-      "id": "6071c387-030f-4f01-b3e3-611adc5eb863",
-      "comment": "",
-      "command": "click",
-      "target": "css=.btn",
-      "targets": [
-        ["css=.btn", "css:finder"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Envoyer')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "779de7fd-e945-493b-b1ba-5c661f1c4d36",
-      "comment": "",
-      "command": "close",
-      "target": "",
-      "targets": [],
-      "value": ""
     }]
   }],
   "suites": [{
