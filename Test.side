@@ -276,17 +276,6 @@
       ],
       "value": ""
     }, {
-      "id": "18c918cc-a207-49ea-992c-e2ca02ed4e22",
-      "comment": "",
-      "command": "click",
-      "target": "css=.is-highlighted",
-      "targets": [
-        ["css=.is-highlighted", "css:finder"],
-        ["xpath=//tr[2]/td[3]/span", "xpath:position"],
-        ["xpath=//span[contains(.,'5')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
       "id": "99c793d9-b0c8-46da-8f66-9f75ffef3795",
       "comment": "",
       "command": "click",
