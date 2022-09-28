@@ -1293,17 +1293,6 @@
       ],
       "value": ""
     }, {
-      "id": "5b6a3b78-f558-49cd-be2a-481437c8c4d4",
-      "comment": "",
-      "command": "click",
-      "target": "css=td > .checkbox",
-      "targets": [
-        ["css=td > .checkbox", "css:finder"],
-        ["xpath=(//input[@name='checkbox'])[2]", "xpath:attributes"],
-        ["xpath=//td/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "62371c7d-d696-4493-b10b-f6cf9bcf3d4a",
       "comment": "",
       "command": "select",

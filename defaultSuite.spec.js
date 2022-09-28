@@ -98,7 +98,6 @@ describe('Default Suite', function() {
     await driver.findElement(By.css(".ng-untouched")).sendKeys(Key.ENTER)
     await driver.findElement(By.css(".fa-eye")).click()
     await driver.findElement(By.css(".modal")).click()
-    await driver.findElement(By.css("td > .checkbox")).click()
     {
       const dropdown = await driver.findElement(By.css(".ng-untouched:nth-child(2)"))
       await dropdown.findElement(By.xpath("//option[. = 'Validé']")).click()
