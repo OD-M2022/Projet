@@ -104,7 +104,7 @@ export class EditUserComponent implements OnInit {
     const editedFields: any = {}
     let defaultEditedFields: any = {}
 
-    if (this.defaultForm.editedFields && this.defaultForm.editedFields !== '') {
+    if (this.defaultForm.editedFields && this.defaultForm.editedFields !== '') { 
       defaultEditedFields = JSON.parse(this.defaultForm.editedFields)
     }
 
