@@ -41,7 +41,7 @@
         ["xpath=//input[@type='email']", "xpath:attributes"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "admin@admin.com"
+      "value": "admin@admin.com******"
     }, {
       "id": "8a949958-7921-4c92-b262-07063e75e340",
       "comment": "",
