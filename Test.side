@@ -35,13 +35,13 @@
       "id": "965d9dea-2dd7-48be-b0a7-1f1eedf00d02",
       "comment": "",
       "command": "type",
-      "target": "xpath=//input[@type='emailXXXXXXXXXXXXXXXX']",
+      "target": "xpath=//input[@type='email']",
       "targets": [
         ["css=.ng-valid", "css:finder"],
         ["xpath=//input[@type='email']", "xpath:attributes"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "admin@admin.com"
+      "value": "admin@admin.com1"
     }, {
       "id": "8a949958-7921-4c92-b262-07063e75e340",
       "comment": "",
