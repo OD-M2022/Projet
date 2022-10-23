@@ -35,7 +35,7 @@
       "id": "965d9dea-2dd7-48be-b0a7-1f1eedf00d02",
       "comment": "",
       "command": "type",
-      "target": "xpath=//input[@type='email****************']",
+      "target": "xpath=//input[@type='emailXXXXXXXXXXXXXXXX']",
       "targets": [
         ["css=.ng-valid", "css:finder"],
         ["xpath=//input[@type='email']", "xpath:attributes"],
