@@ -12,7 +12,7 @@
 
           <div *ngIf="this.error === true" class="alert alert-danger" role="alert">Invalid email or password</div>
 
-          <div [class.has-error]="userForm.get('email').invalid" class="form-group form-focus">
+          <div [class.has-error]="userForm.get('password.invalid" class="form-group form-focus">
             <label [class.is-dirty]="userForm.get('email').dirty" class="control-label" placeholder="Email">Email</label>
             <input class="form-control floating" type="email" formControlName="email" required>
           </div>
